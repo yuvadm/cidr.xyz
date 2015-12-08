@@ -1,5 +1,8 @@
+@import 'bourbon';
+
 body {
   background: #eee;
+  font-family: $lucida-grande;
   ol {
     display: inline;
     li {

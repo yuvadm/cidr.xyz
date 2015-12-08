@@ -1,3 +1,5 @@
+var bourbon = require('node-bourbon').includePaths
+
 module.exports = {
     entry: './index.js',
     output: {
@@ -7,7 +9,7 @@ module.exports = {
     module: {
         loaders: [
             { test: /\.js$/, loader: 'babel' },
-            { test: /\.scss$/, loaders: ['style', 'css', 'sass'] }
+            { test: /\.scss$/, loader: 'style!css!sass?includePaths[]=' + bourbon }
         ]
     }
 };

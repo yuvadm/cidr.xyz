@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "node-bourbon": "^4.2.3",
     "node-sass": "^3.4.2",
     "sass-loader": "^3.1.2",
     "webpack": "^1.12.9",
