@@ -15,20 +15,30 @@ class IPAddress extends React.Component {
 
   handleChange = (event) => {
     var octets = this.state.octets
-    octets[+event.target.attributes['data-octet'].value] = +event.target.value
-    this.setState({
-      octets: octets
-    })
+    var val = +event.target.value
+    var octet = event.target.attributes['data-octet'].value
+    if (octet == 'cidr') {
+      this.setState({
+        cidr: val
+      })
+    }
+    else {
+      octets[+octet] = val
+      this.setState({
+        octets: octets
+      })
+    }
   }
 
   render() {
+    var pretty = this.state.octets.join('.') + '/' + this.state.cidr
     return <form>
       <input type="text" data-octet="0" onChange={this.handleChange} value={this.state.octets[0]}/>.
       <input type="text" data-octet="1" onChange={this.handleChange} value={this.state.octets[1]}/>.
       <input type="text" data-octet="2" onChange={this.handleChange} value={this.state.octets[2]}/>.
       <input type="text" data-octet="3" onChange={this.handleChange} value={this.state.octets[3]}/>/
-      <input type="text" onChange={this.handleChange} value={this.state.cidr}/>
-      <h2></h2>
+      <input type="text" data-octet="cidr" onChange={this.handleChange} value={this.state.cidr}/>
+      <h2>Result: {pretty}</h2>
     </form>
   }
 }
