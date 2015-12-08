@@ -15,18 +15,22 @@ class IPAddress extends React.Component {
 
   handleChange = (event) => {
     var octets = this.state.octets
-    var val = +event.target.value
+    var val = +event.target.value.replace(/[^0-9]/g, '')
     var octet = event.target.attributes['data-octet'].value
     if (octet == 'cidr') {
-      this.setState({
-        cidr: val
-      })
+      if (val <= 32) {
+        this.setState({
+          cidr: val
+        })
+      }
     }
     else {
-      octets[+octet] = val
-      this.setState({
-        octets: octets
-      })
+      if (val <= 255) {
+        octets[+octet] = val
+        this.setState({
+          octets: octets
+        })
+      }
     }
   }
 
