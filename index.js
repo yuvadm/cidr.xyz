@@ -37,12 +37,23 @@ class IPAddress extends React.Component {
   render() {
     var pretty = this.state.octets.join('.') + '/' + this.state.cidr
     return <form>
-      <input type="text" data-octet="0" onChange={this.handleChange} value={this.state.octets[0]}/>.
-      <input type="text" data-octet="1" onChange={this.handleChange} value={this.state.octets[1]}/>.
-      <input type="text" data-octet="2" onChange={this.handleChange} value={this.state.octets[2]}/>.
-      <input type="text" data-octet="3" onChange={this.handleChange} value={this.state.octets[3]}/>/
+      {[...Array(4)].map((x, octet) =>
+        <input type="text" data-octet={octet} onChange={this.handleChange} value={this.state.octets[octet]}/>
+      )}
       <input type="text" data-octet="cidr" onChange={this.handleChange} value={this.state.cidr}/>
       <h2>Result: {pretty}</h2>
+
+      <ol>
+        {[...Array(4)].map((x, octet) =>
+          <li>
+            <ol>
+              {[...Array(8)].map((x, bit) =>
+                <li>{(this.state.octets[octet] & (1 << (7-bit))) >> (7-bit)}</li>
+              )}
+            </ol>
+          </li>
+        )}
+      </ol>
     </form>
   }
 }
