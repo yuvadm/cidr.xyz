@@ -47,6 +47,4 @@ class IPAddress extends React.Component {
   }
 }
 
-const app = document.createElement('div')
-document.body.appendChild(app)
-ReactDOM.render(<IPAddress />, app)
+ReactDOM.render(<IPAddress />, document.getElementById('app'))
