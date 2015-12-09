@@ -63,7 +63,10 @@ body {
           &:nth-child(2) ol li.bit.unmasked { background-color: lighten($color_b, $octet_lighten); }
           &:nth-child(3) ol li.bit.unmasked { background-color: lighten($color_c, $octet_lighten); }
           &:nth-child(4) ol li.bit.unmasked { background-color: lighten($color_d, $octet_lighten); }
-          ol li.bit.masked { background-color: lighten($color_e, $octet_lighten); }
+          ol li.bit.masked {
+            background-color: lighten($color_e, $octet_lighten);
+            color: lighten($color_e, 22%);
+          }
         }
       }
     }

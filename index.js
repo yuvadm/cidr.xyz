@@ -34,9 +34,22 @@ class IPAddress extends React.Component {
     }
   }
 
-  render() {
-    var pretty = this.state.octets.join('.') + '/' + this.state.cidr
+  getPretty = () => {
+    return this.state.octets.join('.') + '/' + this.state.cidr
+  }
 
+  getNetmask = () => {
+    if (this.state.cidr == 0) {
+      return '0.0.0.0'
+    }
+    else {
+      return [...Array(4)].map((x, octet) =>
+        ((((0xFFFFFFFF << (32 - this.state.cidr)) >>> 0) >>> (3-octet)*8) & 0xFF)
+      ).join('.')
+    }
+  }
+
+  render() {
     return <div className="ip-address">
       <div className="address">
         {[...Array(4)].map((x, octet) =>
@@ -61,6 +74,11 @@ class IPAddress extends React.Component {
           )}
         </ol>
       </div>
+
+      <div className="details">
+        <span className="netmask">Netmask: {this.getNetmask()}</span>
+      </div>
+
     </div>
   }
 }
