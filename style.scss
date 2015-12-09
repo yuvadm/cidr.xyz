@@ -4,6 +4,7 @@ $color_a: #A101A6;
 $color_b: #D9005B;
 $color_c: #84E900;
 $color_d: #CFF700;
+$color_e: #AAA;
 $octet_lighten: 15%;
 
 body {
@@ -22,24 +23,25 @@ body {
     }
     div.address {
       input {
-        width: 3em;
+        width: 2.5em;
         font-size: 2.7em;
         text-align: center;
         border: 0px;
+        border-radius: 3px;
       }
-      input.octet {
-        &:nth-child(1) { background-color: $color_a; }
-        &:nth-child(2) { background-color: $color_b; }
-        &:nth-child(3) { background-color: $color_c; }
-        &:nth-child(4) { background-color: $color_d; }
-      }
-      span.slash {
-        font-size: 2.7em;
-        text-align: center;
-        padding: 0.4em 0.6em;
+      span.octet {
+        span.dot {
+          font-size: 2.7em;
+          text-align: center;
+          padding: 0.1em 0.13em;
+        }
+        &:nth-child(1) input.octet { background-color: $color_a; }
+        &:nth-child(2) input.octet { background-color: $color_b; }
+        &:nth-child(3) input.octet { background-color: $color_c; }
+        &:nth-child(4) input.octet { background-color: $color_d; }
       }
       input.cidr {
-
+        background-color: $color_e;
       }
     }
     div.bits {

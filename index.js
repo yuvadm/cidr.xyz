@@ -40,9 +40,11 @@ class IPAddress extends React.Component {
     return <div className="ip-address">
       <div className="address">
         {[...Array(4)].map((x, octet) =>
-          <input className="octet" type="text" data-octet={octet} onChange={this.handleChange} value={this.state.octets[octet]}/>
+          <span className="octet">
+            <input className="octet" type="text" data-octet={octet} onChange={this.handleChange} value={this.state.octets[octet]}/>
+            <span className="dot">{octet == '3' ? '/' : '.'}</span>
+          </span>
         )}
-        <span className="slash">&#47;</span>
         <input className="cidr" type="text" data-octet="cidr" onChange={this.handleChange} value={this.state.cidr}/>
       </div>
 
