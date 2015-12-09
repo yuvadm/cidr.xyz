@@ -10,8 +10,10 @@ body {
   }
 
   form {
+    text-align: center;
     input {
       width: 3em;
+      font-size: 2.7em;
       text-align: center;
       border: 0px;
       background: transparent;
@@ -22,6 +24,12 @@ body {
     display: inline;
     li {
       display: inline;
+      ol {
+        li {
+          padding: 0.4em 0.6em;
+          border: 1px black solid;
+        }
+      }
     }
   }
 
