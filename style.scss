@@ -14,14 +14,18 @@ body {
 
   header {
     margin-bottom: 30px;
+    margin-left: 40px;
     h1 {
       font-size: 1.7em;
-      margin-left: 40px;
       small {
         text-transform: uppercase;
         color: #bbb;
         display: block;
       }
+    }
+    p {
+      margin-right: 90px;
+      font-size: 0.8em;
     }
   }
 
