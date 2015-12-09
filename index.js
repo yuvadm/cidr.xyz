@@ -9,7 +9,7 @@ class IPAddress extends React.Component {
     super(props)
     this.state = {
       octets: [10, 88, 135, 24],
-      cidr: 36,
+      cidr: 32,
     }
   }
 
