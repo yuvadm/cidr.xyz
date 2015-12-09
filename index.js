@@ -88,7 +88,7 @@ class IPAddress extends React.Component {
           <span className="label">Netmask</span>
         </span>
         <span className="count">
-          <span className="value">{this.getCount()}</span>
+          <span className="value">{this.getCount().toLocaleString()}</span>
           <span className="label">Addresses</span>
         </span>
       </div>
