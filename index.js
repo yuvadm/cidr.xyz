@@ -49,6 +49,13 @@ class IPAddress extends React.Component {
     }
   }
 
+  getCount = () => {
+    if (this.state.cidr == 32) {
+      return 1;
+    }
+    return ((0xFFFFFFFF >>> this.state.cidr) >>> 0) + 1
+  }
+
   render() {
     return <div className="ip-address">
       <div className="address">
@@ -76,7 +83,7 @@ class IPAddress extends React.Component {
       </div>
 
       <div className="details">
-        <span className="netmask">Netmask: {this.getNetmask()}</span>
+        <span className="netmask">Netmask: {this.getNetmask()}</span>, <span className="count">Address Count: {this.getCount()}</span>
       </div>
 
     </div>
