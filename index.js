@@ -8,8 +8,8 @@ class IPAddress extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      octets: [10, 88, 135, 24],
-      cidr: 32,
+      octets: [10, 88, 135, 144],
+      cidr: 28,
     }
   }
 
@@ -54,7 +54,7 @@ class IPAddress extends React.Component {
             <li className="octet">
               <ol>
                 {[...Array(8)].map((x, bit) =>
-                  <li className="bit">{(this.state.octets[octet] & (1 << (7-bit))) >> (7-bit)}</li>
+                  <li className={((octet*8)+bit) > this.state.cidr-1 ? 'bit masked' : 'bit unmasked'}>{(this.state.octets[octet] & (1 << (7-bit))) >> (7-bit)}</li>
                 )}
               </ol>
             </li>
