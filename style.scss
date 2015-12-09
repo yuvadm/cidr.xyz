@@ -1,5 +1,10 @@
 @import 'bourbon';
 
+$color_a: #A101A6;
+$color_b: #D9005B;
+$color_c: #84E900;
+$color_d: #CFF700;
+
 body {
 
   background: #eee;
@@ -9,25 +14,47 @@ body {
     margin-bottom: 30px;
   }
 
-  form {
+  div.ip-address {
     text-align: center;
-    input {
-      width: 3em;
-      font-size: 2.7em;
-      text-align: center;
-      border: 0px;
-      background: transparent;
+    div {
+      margin-top: 65px;
     }
-  }
+    div.address {
+      input {
+        width: 3em;
+        font-size: 2.7em;
+        text-align: center;
+        border: 0px;
+      }
+      input.octet {
+        &:nth-child(1) { background-color: $color_a; }
+        &:nth-child(2) { background-color: $color_b; }
+        &:nth-child(3) { background-color: $color_c; }
+        &:nth-child(4) { background-color: $color_d; }
+      }
+      span.slash {
+        font-size: 2.7em;
+        text-align: center;
+        padding: 0.4em 0.6em;
+      }
+      input.cidr {
 
-  ol {
-    display: inline;
-    li {
-      display: inline;
+      }
+    }
+    div.bits {
       ol {
+        display: inline;
+        padding-left: 0px;
+        padding-right: 15px;
         li {
-          padding: 0.4em 0.6em;
-          border: 1px black solid;
+          display: inline;
+          ol {
+            li {
+              padding: 0.4em 0.6em;
+              margin-left: -1px;
+              border: 1px black solid;
+            }
+          }
         }
       }
     }

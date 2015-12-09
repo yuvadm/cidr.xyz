@@ -36,25 +36,30 @@ class IPAddress extends React.Component {
 
   render() {
     var pretty = this.state.octets.join('.') + '/' + this.state.cidr
-    return <form class="ip-address">
-      {[...Array(4)].map((x, octet) =>
-        <input class="octet" type="text" data-octet={octet} onChange={this.handleChange} value={this.state.octets[octet]}/>
-      )}
-      <input class="cidr" type="text" data-octet="cidr" onChange={this.handleChange} value={this.state.cidr}/>
-      <h2>Result: {pretty}</h2>
 
-      <ol>
+    return <div className="ip-address">
+      <div className="address">
         {[...Array(4)].map((x, octet) =>
-          <li class="octet">
-            <ol>
-              {[...Array(8)].map((x, bit) =>
-                <li class="bit">{(this.state.octets[octet] & (1 << (7-bit))) >> (7-bit)}</li>
-              )}
-            </ol>
-          </li>
+          <input className="octet" type="text" data-octet={octet} onChange={this.handleChange} value={this.state.octets[octet]}/>
         )}
-      </ol>
-    </form>
+        <span className="slash">&#47;</span>
+        <input className="cidr" type="text" data-octet="cidr" onChange={this.handleChange} value={this.state.cidr}/>
+      </div>
+
+      <div className="bits">
+        <ol>
+          {[...Array(4)].map((x, octet) =>
+            <li className="octet">
+              <ol>
+                {[...Array(8)].map((x, bit) =>
+                  <li className="bit">{(this.state.octets[octet] & (1 << (7-bit))) >> (7-bit)}</li>
+                )}
+              </ol>
+            </li>
+          )}
+        </ol>
+      </div>
+    </div>
   }
 }
 
