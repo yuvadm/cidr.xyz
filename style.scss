@@ -4,6 +4,7 @@ $color_a: #A101A6;
 $color_b: #D9005B;
 $color_c: #84E900;
 $color_d: #CFF700;
+$octet_lighten: 15%;
 
 body {
 
@@ -46,15 +47,20 @@ body {
         display: inline;
         padding-left: 0px;
         padding-right: 15px;
-        li {
+        li.octet {
           display: inline;
           ol {
-            li {
+            li.bit {
+              display: inline;
               padding: 0.4em 0.6em;
               margin-left: -1px;
               border: 1px black solid;
             }
           }
+          &:nth-child(1) ol li.bit { background-color: lighten($color_a, $octet_lighten); }
+          &:nth-child(2) ol li.bit { background-color: lighten($color_b, $octet_lighten); }
+          &:nth-child(3) ol li.bit { background-color: lighten($color_c, $octet_lighten); }
+          &:nth-child(4) ol li.bit { background-color: lighten($color_d, $octet_lighten); }
         }
       }
     }
