@@ -1,12 +1,34 @@
 @import 'bourbon';
 
 body {
+
   background: #eee;
   font-family: $lucida-grande;
+
+  header {
+    margin-bottom: 30px;
+  }
+
+  form {
+    input {
+      width: 3em;
+      text-align: center;
+      border: 0px;
+      background: transparent;
+    }
+  }
+
   ol {
     display: inline;
     li {
       display: inline;
     }
   }
+
+  footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.7em;
+  }
+
 }
