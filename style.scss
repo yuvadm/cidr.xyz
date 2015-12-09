@@ -19,7 +19,7 @@ body {
       font-size: modular-scale(2);
       small {
         text-transform: uppercase;
-        color: #bbb;
+        color: #669;
         display: block;
       }
     }
@@ -85,11 +85,23 @@ body {
       }
     }
     div.details {
-      span.label {
-        font-family: $lucida-grande;
+      span.netmask {
+        display: inline-block;
       }
       span.count {
-        margin-left: 2em;
+        display: inline-block;
+        margin-left: 3em;
+      }
+      span.value {
+        font-size: modular-scale(1);
+      }
+      span.label {
+        display: block;
+        font-family: $lucida-grande;
+        text-transform: uppercase;
+        font-size: modular-scale(2);
+        font-weight: bold;
+        color: #779;
       }
     }
   }
@@ -97,7 +109,7 @@ body {
   footer {
     margin-top: 50px;
     text-align: center;
-    font-size: 0.7em;
+    font-size: modular-scale(-1);
   }
 
 }
