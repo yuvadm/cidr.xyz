@@ -14,10 +14,20 @@ body {
 
   header {
     margin-bottom: 30px;
+    h1 {
+      font-size: 1.7em;
+      margin-left: 40px;
+      small {
+        text-transform: uppercase;
+        color: #bbb;
+        display: block;
+      }
+    }
   }
 
   div.ip-address {
     text-align: center;
+    font-family: $monospace;
     div {
       margin-top: 65px;
     }
@@ -68,6 +78,14 @@ body {
             color: lighten($color_e, 22%);
           }
         }
+      }
+    }
+    div.details {
+      span.label {
+        font-family: $lucida-grande;
+      }
+      span.count {
+        margin-left: 2em;
       }
     }
   }

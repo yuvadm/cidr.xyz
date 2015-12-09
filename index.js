@@ -83,7 +83,12 @@ class IPAddress extends React.Component {
       </div>
 
       <div className="details">
-        <span className="netmask">Netmask: {this.getNetmask()}</span>, <span className="count">Address Count: {this.getCount()}</span>
+        <span className="netmask">
+          <span className="label">Netmask:</span> {this.getNetmask()}
+        </span>
+        <span className="count">
+          <span className="label">Available addresses:</span> {this.getCount()}
+        </span>
       </div>
 
     </div>
