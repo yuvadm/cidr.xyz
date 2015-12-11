@@ -87,14 +87,19 @@ body {
     div.details {
       span.netmask {
         display: inline-block;
+        width: 20%;
       }
-      span.range {
+      span.first {
         display: inline-block;
-        margin-left: 3em;
+        width: 20%;
+      }
+      span.last {
+        display: inline-block;
+        width: 20%;
       }
       span.count {
         display: inline-block;
-        margin-left: 3em;
+        width: 20%;
       }
       span.value {
         font-size: modular-scale(1);

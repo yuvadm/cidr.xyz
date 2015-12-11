@@ -44,9 +44,14 @@ class IPAddress extends React.Component {
     return block.mask
   }
 
-  getRange = () => {
+  getFirst = () => {
     var block = new Netmask(this.getPretty())
-    return block.first + ' - ' + block.last
+    return block.first
+  }
+
+  getLast = () => {
+    var block = new Netmask(this.getPretty())
+    return block.last
   }
 
   getCount = () => {
@@ -85,13 +90,17 @@ class IPAddress extends React.Component {
           <span className="value">{this.getNetmask()}</span>
           <span className="label">Netmask</span>
         </span>
-        <span className="range">
-          <span className="value">{this.getRange()}</span>
-          <span className="label">Range</span>
+        <span className="first">
+          <span className="value">{this.getFirst()}</span>
+          <span className="label">First IP</span>
+        </span>
+        <span className="last">
+          <span className="value">{this.getLast()}</span>
+          <span className="label">Last IP</span>
         </span>
         <span className="count">
           <span className="value">{this.getCount().toLocaleString()}</span>
-          <span className="label">Addresses</span>
+          <span className="label">Count</span>
         </span>
       </div>
 
