@@ -1,5 +1,6 @@
 import './style.scss'
 
+import { Netmask } from 'netmask'
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -39,21 +40,18 @@ class IPAddress extends React.Component {
   }
 
   getNetmask = () => {
-    if (this.state.cidr == 0) {
-      return '0.0.0.0'
-    }
-    else {
-      return [...Array(4)].map((x, octet) =>
-        ((((0xFFFFFFFF << (32 - this.state.cidr)) >>> 0) >>> (3-octet)*8) & 0xFF)
-      ).join('.')
-    }
+    var block = new Netmask(this.getPretty())
+    return block.mask
+  }
+
+  getRange = () => {
+    var block = new Netmask(this.getPretty())
+    return block.first + ' - ' + block.last
   }
 
   getCount = () => {
-    if (this.state.cidr == 32) {
-      return 1;
-    }
-    return ((0xFFFFFFFF >>> this.state.cidr) >>> 0) + 1
+    var block = new Netmask(this.getPretty())
+    return block.size
   }
 
   render() {
@@ -86,6 +84,10 @@ class IPAddress extends React.Component {
         <span className="netmask">
           <span className="value">{this.getNetmask()}</span>
           <span className="label">Netmask</span>
+        </span>
+        <span className="range">
+          <span className="value">{this.getRange()}</span>
+          <span className="label">Range</span>
         </span>
         <span className="count">
           <span className="value">{this.getCount().toLocaleString()}</span>
