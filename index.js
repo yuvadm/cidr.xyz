@@ -39,27 +39,9 @@ class IPAddress extends React.Component {
     return this.state.octets.join('.') + '/' + this.state.cidr
   }
 
-  getNetmask = () => {
-    var block = new Netmask(this.getPretty())
-    return block.mask
-  }
-
-  getFirst = () => {
-    var block = new Netmask(this.getPretty())
-    return block.first
-  }
-
-  getLast = () => {
-    var block = new Netmask(this.getPretty())
-    return block.last
-  }
-
-  getCount = () => {
-    var block = new Netmask(this.getPretty())
-    return block.size
-  }
-
   render() {
+    var details = new Netmask(this.getPretty())
+
     return <div className="ip-address">
       <div className="address">
         {[...Array(4)].map((x, octet) =>
@@ -87,19 +69,19 @@ class IPAddress extends React.Component {
 
       <div className="details">
         <span className="netmask">
-          <span className="value">{this.getNetmask()}</span>
+          <span className="value">{details.mask}</span>
           <span className="label">Netmask</span>
         </span>
         <span className="first">
-          <span className="value">{this.getFirst()}</span>
+          <span className="value">{details.first}</span>
           <span className="label">First IP</span>
         </span>
         <span className="last">
-          <span className="value">{this.getLast()}</span>
+          <span className="value">{details.last}</span>
           <span className="label">Last IP</span>
         </span>
         <span className="count">
-          <span className="value">{this.getCount().toLocaleString()}</span>
+          <span className="value">{details.size.toLocaleString()}</span>
           <span className="label">Count</span>
         </span>
       </div>
