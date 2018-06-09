@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <Cidr/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Cidr from './components/Cidr'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Cidr
   }
 }
 </script>
