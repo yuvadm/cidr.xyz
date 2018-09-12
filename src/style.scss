@@ -1,16 +1,13 @@
-@import 'bourbon';
-
-$color_a: #A101A6;
-$color_b: #D9005B;
-$color_c: #84E900;
-$color_d: #CFF700;
-$color_e: #AAA;
+$color_a: #a101a6;
+$color_b: #d9005b;
+$color_c: #84e900;
+$color_d: #cff700;
+$color_e: #aaa;
 $octet_lighten: 15%;
 
 body {
-
   background: #eee;
-  font-family: $lucida-grande;
+  // font-family: $lucida-grande;
 
   header {
     margin-bottom: 30px;
@@ -31,7 +28,7 @@ body {
 
   div.ip-address {
     text-align: center;
-    font-family: $monospace;
+    // font-family: $monospace;
     div {
       margin-top: 65px;
     }
@@ -49,10 +46,18 @@ body {
           text-align: center;
           padding: 0.1em 0.13em;
         }
-        &:nth-child(1) input.octet { background-color: $color_a; }
-        &:nth-child(2) input.octet { background-color: $color_b; }
-        &:nth-child(3) input.octet { background-color: $color_c; }
-        &:nth-child(4) input.octet { background-color: $color_d; }
+        &:nth-child(1) input.octet {
+          background-color: $color_a;
+        }
+        &:nth-child(2) input.octet {
+          background-color: $color_b;
+        }
+        &:nth-child(3) input.octet {
+          background-color: $color_c;
+        }
+        &:nth-child(4) input.octet {
+          background-color: $color_d;
+        }
       }
       input.cidr {
         background-color: $color_e;
@@ -73,10 +78,18 @@ body {
               border: 1px black solid;
             }
           }
-          &:nth-child(1) ol li.bit.unmasked { background-color: lighten($color_a, $octet_lighten); }
-          &:nth-child(2) ol li.bit.unmasked { background-color: lighten($color_b, $octet_lighten); }
-          &:nth-child(3) ol li.bit.unmasked { background-color: lighten($color_c, $octet_lighten); }
-          &:nth-child(4) ol li.bit.unmasked { background-color: lighten($color_d, $octet_lighten); }
+          &:nth-child(1) ol li.bit.unmasked {
+            background-color: lighten($color_a, $octet_lighten);
+          }
+          &:nth-child(2) ol li.bit.unmasked {
+            background-color: lighten($color_b, $octet_lighten);
+          }
+          &:nth-child(3) ol li.bit.unmasked {
+            background-color: lighten($color_c, $octet_lighten);
+          }
+          &:nth-child(4) ol li.bit.unmasked {
+            background-color: lighten($color_d, $octet_lighten);
+          }
           ol li.bit.masked {
             background-color: lighten($color_e, $octet_lighten);
             color: lighten($color_e, 22%);
@@ -106,7 +119,7 @@ body {
       }
       span.label {
         display: block;
-        font-family: $lucida-grande;
+        // font-family: $lucida-grande;
         text-transform: uppercase;
         font-size: modular-scale(2);
         font-weight: bold;
@@ -120,5 +133,4 @@ body {
     text-align: center;
     font-size: modular-scale(-1);
   }
-
 }
