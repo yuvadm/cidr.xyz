@@ -14,5 +14,5 @@ $ yarn run start
 On branch `gh-pages`:
 
 ```bash
-$ webpack --optimize-minimize
+$ yarn build
 ```
