@@ -11,7 +11,7 @@ $ yarn run start
 
 ## Prod
 
-Re-generate `dist/`:
+Re-generate `docs/`:
 
 ```bash
 $ yarn run deploy
