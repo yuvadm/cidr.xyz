@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono');
+
 $color_a: #a101a6;
 $color_b: #d9005b;
 $color_c: #84e900;
@@ -7,8 +9,7 @@ $octet_lighten: 15%;
 
 body {
   background: #eee;
-  font-family: lucida-grande;
-
+  font-family: 'Ubuntu', sans-serif;
   header {
     margin-bottom: 30px;
     margin-left: 40px;
@@ -28,7 +29,7 @@ body {
 
   div.ip-address {
     text-align: center;
-    font-family: monospace;
+    font-family: 'Ubuntu Mono', monospace;
     div {
       margin-top: 65px;
     }
@@ -119,7 +120,7 @@ body {
       }
       span.label {
         display: block;
-        // font-family: $lucida-grande;
+        font-family: 'Ubuntu', sans-serif;
         text-transform: uppercase;
         font-size: modular-scale(2);
         font-weight: bold;
