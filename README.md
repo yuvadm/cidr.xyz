@@ -5,8 +5,8 @@ Web-based CIDR / netmask / IP address visualizer. Built to learn the basics of [
 ## Dev
 
 ```bash
-$ npm install
-$ webpack-dev-server --progress --colors
+$ yarn
+$ yarn run start
 ```
 
 ## Prod
@@ -14,5 +14,5 @@ $ webpack-dev-server --progress --colors
 On branch `gh-pages`:
 
 ```bash
-$ webpack --optimize-minimize
+$ yarn run deploy
 ```
