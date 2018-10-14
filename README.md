@@ -11,7 +11,7 @@ $ yarn run start
 
 ## Prod
 
-On branch `gh-pages`:
+Re-generate `dist/`:
 
 ```bash
 $ yarn run deploy
