@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "deploy": "webpack --mode production && gh-pages -d dist"
+    "deploy": "webpack --mode production && gh-pages -d docs"
   },
   "author": "",
   "license": "ISC",
