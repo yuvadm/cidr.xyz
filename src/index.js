@@ -12,6 +12,7 @@ class IPAddress extends Component {
       cidr: 28
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   handleChange(event) {
@@ -34,6 +35,50 @@ class IPAddress extends Component {
     }
   }
 
+  handleKeyDown(event) {
+    event.persist();
+    var octet = event.target.attributes['data-octet'].value;
+    console.log(octet);
+
+    // updating values for octet
+    if (octet === 'cidr') {
+      if (event.key === 'ArrowDown') {
+        this.setState(prevState => {
+          if (prevState.cidr > 0 && prevState.cidr < 33)
+            return { cidr: prevState.cidr - 1 };
+        });
+      }
+      if (event.key === 'ArrowUp') {
+        this.setState(prevState => {
+          if (prevState.cidr >= 0 && prevState.cidr < 32)
+            return { cidr: prevState.cidr + 1 };
+        });
+      }
+    }
+    // updating values for octet
+    else {
+      if (event.key === 'ArrowDown') {
+        this.setState(prevState => {
+          const newOctet = [...prevState.octets];
+          const index = event.target.dataset.octet;
+          newOctet[index] = newOctet[index] - 1;
+          if (newOctet[index] > 0 && newOctet[index] < 256)
+            return { octets: newOctet };
+        });
+      }
+
+      if (event.key === 'ArrowUp') {
+        this.setState(prevState => {
+          const newOctet = [...prevState.octets];
+          const index = event.target.dataset.octet;
+          newOctet[index] = newOctet[index] + 1;
+          if (newOctet[index] > 0 && newOctet[index] < 256)
+            return { octets: newOctet };
+        });
+      }
+    }
+  }
+
   getPretty() {
     return this.state.octets.join('.') + '/' + this.state.cidr;
   }
@@ -51,6 +96,7 @@ class IPAddress extends Component {
                 type="text"
                 data-octet={octet}
                 onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
                 value={this.state.octets[octet]}
               />
               <span className="dot">{octet == '3' ? '/' : '.'}</span>
@@ -61,6 +107,7 @@ class IPAddress extends Component {
             type="text"
             data-octet="cidr"
             onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
             value={this.state.cidr}
           />
         </div>
