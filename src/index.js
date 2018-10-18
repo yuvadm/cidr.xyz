@@ -37,45 +37,13 @@ class IPAddress extends Component {
 
   handleKeyDown(event) {
     event.persist();
-    var octet = event.target.attributes['data-octet'].value;
-    console.log(octet);
-
-    // updating values for octet
-    if (octet === 'cidr') {
-      if (event.key === 'ArrowDown') {
-        this.setState(prevState => {
-          if (prevState.cidr > 0 && prevState.cidr < 33)
-            return { cidr: prevState.cidr - 1 };
-        });
-      }
-      if (event.key === 'ArrowUp') {
-        this.setState(prevState => {
-          if (prevState.cidr >= 0 && prevState.cidr < 32)
-            return { cidr: prevState.cidr + 1 };
-        });
-      }
+    if (event.key === 'ArrowDown') {
+      event.target.value = +event.target.value - 1;
+      this.handleChange(event);
     }
-    // updating values for octet
-    else {
-      if (event.key === 'ArrowDown') {
-        this.setState(prevState => {
-          const newOctet = [...prevState.octets];
-          const index = event.target.dataset.octet;
-          newOctet[index] = newOctet[index] - 1;
-          if (newOctet[index] > 0 && newOctet[index] < 256)
-            return { octets: newOctet };
-        });
-      }
-
-      if (event.key === 'ArrowUp') {
-        this.setState(prevState => {
-          const newOctet = [...prevState.octets];
-          const index = event.target.dataset.octet;
-          newOctet[index] = newOctet[index] + 1;
-          if (newOctet[index] > 0 && newOctet[index] < 256)
-            return { octets: newOctet };
-        });
-      }
+    if (event.key === 'ArrowUp') {
+      event.target.value = +event.target.value + 1;
+      this.handleChange(event);
     }
   }
 
