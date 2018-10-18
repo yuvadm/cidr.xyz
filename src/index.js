@@ -36,12 +36,13 @@ class IPAddress extends Component {
   }
 
   handleKeyDown(event) {
-    event.persist();
-    if (event.key === 'ArrowDown') {
+    var lowerOctetValue = 0;
+    var higherOctetValue = event.target.dataset.octet === 'cidr' ? 32 : 255;
+    if (event.key === 'ArrowDown' && event.target.value > lowerOctetValue) {
       event.target.value = +event.target.value - 1;
       this.handleChange(event);
     }
-    if (event.key === 'ArrowUp') {
+    if (event.key === 'ArrowUp' && event.target.value < higherOctetValue) {
       event.target.value = +event.target.value + 1;
       this.handleChange(event);
     }
