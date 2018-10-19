@@ -11,8 +11,9 @@ body {
   background: #eee;
   font-family: 'Ubuntu', sans-serif;
   header {
-    margin-bottom: 30px;
-    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     h1 {
       font-size: modular-scale(2);
       small {
@@ -22,8 +23,8 @@ body {
       }
     }
     p {
-      margin-right: 90px;
       font-size: modular-scale(-1);
+      max-width: 720px;
     }
   }
 
@@ -34,12 +35,19 @@ body {
       margin-top: 65px;
     }
     div.address {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       input {
         width: 2.5em;
         font-size: 2.7em;
         text-align: center;
         border: 0px;
         border-radius: 3px;
+      }
+      > .octet,
+      .cidr {
+        margin: 10px;
       }
       span.octet {
         span.dot {
@@ -66,14 +74,18 @@ body {
     }
     div.bits {
       ol {
-        display: inline;
-        padding-left: 0px;
-        padding-right: 15px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0;
         li.octet {
-          display: inline;
+          display: flex;
           ol {
+            padding-left: 0px;
+            padding-right: 15px;
+            padding-bottom: 15px;
             li.bit {
-              display: inline;
+              display: flex;
               padding: 0.4em 0.6em;
               margin-left: -1px;
               border: 1px black solid;
@@ -99,24 +111,11 @@ body {
       }
     }
     div.details {
-      span.netmask {
-        display: inline-block;
-        width: 20%;
-      }
-      span.first {
-        display: inline-block;
-        width: 20%;
-      }
-      span.last {
-        display: inline-block;
-        width: 20%;
-      }
-      span.count {
-        display: inline-block;
-        width: 20%;
-      }
-      span.value {
-        font-size: modular-scale(1);
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      > span {
+        padding: 15px;
       }
       span.label {
         display: block;
