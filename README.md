@@ -11,7 +11,7 @@ $ yarn run start
 
 ## Prod
 
-Re-generate `docs/`:
+Deploy the current state to `gh-pages` branch auto-magically:
 
 ```bash
 $ yarn run deploy

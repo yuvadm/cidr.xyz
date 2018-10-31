@@ -12,6 +12,7 @@ class IPAddress extends Component {
       cidr: 28
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   handleChange(event) {
@@ -34,6 +35,19 @@ class IPAddress extends Component {
     }
   }
 
+  handleKeyDown(event) {
+    var lowerOctetValue = 0;
+    var higherOctetValue = event.target.dataset.octet === 'cidr' ? 32 : 255;
+    if (event.key === 'ArrowDown' && event.target.value > lowerOctetValue) {
+      event.target.value = +event.target.value - 1;
+      this.handleChange(event);
+    }
+    if (event.key === 'ArrowUp' && event.target.value < higherOctetValue) {
+      event.target.value = +event.target.value + 1;
+      this.handleChange(event);
+    }
+  }
+
   getPretty() {
     return this.state.octets.join('.') + '/' + this.state.cidr;
   }
@@ -51,6 +65,7 @@ class IPAddress extends Component {
                 type="text"
                 data-octet={octet}
                 onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
                 value={this.state.octets[octet]}
               />
               <span className="dot">{octet == '3' ? '/' : '.'}</span>
@@ -61,6 +76,7 @@ class IPAddress extends Component {
             type="text"
             data-octet="cidr"
             onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
             value={this.state.cidr}
           />
         </div>
