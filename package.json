@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production",
-    "deploy": "webpack --mode production && gh-pages -d dist"
+    "build": "webpack --mode production"
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +19,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
-    "gh-pages": "^2.1.1",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "netmask": "^1.0.6",
