@@ -10,128 +10,135 @@ $octet_lighten: 15%;
 body {
   background: #eee;
   font-family: 'Ubuntu', sans-serif;
-  header {
-    margin-bottom: 30px;
-    margin-left: 40px;
-    h1 {
-      font-size: modular-scale(2);
-      small {
-        text-transform: uppercase;
-        color: #669;
-        display: block;
+  #container {
+    width: 50vw;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    header {
+      margin-bottom: 30px;
+      margin-left: 40px;
+      h1 {
+        font-size: modular-scale(2);
+        small {
+          text-transform: uppercase;
+          color: #669;
+          display: block;
+        }
+      }
+      p {
+        margin-right: 90px;
+        // font-size: modular-scale(3);
       }
     }
-    p {
-      margin-right: 90px;
-      font-size: modular-scale(-1);
-    }
-  }
 
-  div.ip-address {
-    text-align: center;
-    font-family: 'Ubuntu Mono', monospace;
-    div {
-      margin-top: 65px;
-    }
-    div.address {
-      input {
-        width: 2.5em;
-        font-size: 2.7em;
-        text-align: center;
-        border: 0px;
-        border-radius: 3px;
+    div.ip-address {
+      text-align: center;
+      font-family: 'Ubuntu Mono', monospace;
+      div {
+        margin-top: 65px;
       }
-      span.octet {
-        span.dot {
+      div.address {
+        input {
+          width: 2.5em;
           font-size: 2.7em;
           text-align: center;
-          padding: 0.1em 0.13em;
+          border: 0px;
+          border-radius: 3px;
         }
-        &:nth-child(1) input.octet {
-          background-color: $color_a;
+        span.octet {
+          span.dot {
+            font-size: 2.7em;
+            text-align: center;
+            padding: 0.1em 0.13em;
+          }
+          &:nth-child(1) input.octet {
+            background-color: $color_a;
+          }
+          &:nth-child(2) input.octet {
+            background-color: $color_b;
+          }
+          &:nth-child(3) input.octet {
+            background-color: $color_c;
+          }
+          &:nth-child(4) input.octet {
+            background-color: $color_d;
+          }
         }
-        &:nth-child(2) input.octet {
-          background-color: $color_b;
-        }
-        &:nth-child(3) input.octet {
-          background-color: $color_c;
-        }
-        &:nth-child(4) input.octet {
-          background-color: $color_d;
+        input.cidr {
+          background-color: $color_e;
         }
       }
-      input.cidr {
-        background-color: $color_e;
-      }
-    }
-    div.bits {
-      ol {
-        display: inline;
-        padding-left: 0px;
-        padding-right: 15px;
-        li.octet {
+      div.bits {
+        ol {
           display: inline;
-          ol {
-            li.bit {
-              display: inline;
-              padding: 0.4em 0.6em;
-              margin-left: -1px;
-              border: 1px black solid;
+          padding-left: 0px;
+          padding-right: 15px;
+          li.octet {
+            display: inline;
+            ol {
+              li.bit {
+                display: inline;
+                padding: 0.4em 0.6em;
+                margin-left: -1px;
+                border: 1px black solid;
+              }
+            }
+            &:nth-child(1) ol li.bit.unmasked {
+              background-color: lighten($color_a, $octet_lighten);
+            }
+            &:nth-child(2) ol li.bit.unmasked {
+              background-color: lighten($color_b, $octet_lighten);
+            }
+            &:nth-child(3) ol li.bit.unmasked {
+              background-color: lighten($color_c, $octet_lighten);
+            }
+            &:nth-child(4) ol li.bit.unmasked {
+              background-color: lighten($color_d, $octet_lighten);
+            }
+            ol li.bit.masked {
+              background-color: lighten($color_e, $octet_lighten);
+              color: lighten($color_e, 22%);
             }
           }
-          &:nth-child(1) ol li.bit.unmasked {
-            background-color: lighten($color_a, $octet_lighten);
-          }
-          &:nth-child(2) ol li.bit.unmasked {
-            background-color: lighten($color_b, $octet_lighten);
-          }
-          &:nth-child(3) ol li.bit.unmasked {
-            background-color: lighten($color_c, $octet_lighten);
-          }
-          &:nth-child(4) ol li.bit.unmasked {
-            background-color: lighten($color_d, $octet_lighten);
-          }
-          ol li.bit.masked {
-            background-color: lighten($color_e, $octet_lighten);
-            color: lighten($color_e, 22%);
-          }
+        }
+      }
+      div.details {
+        span.netmask {
+          display: inline-block;
+          width: 20%;
+        }
+        span.first {
+          display: inline-block;
+          width: 20%;
+        }
+        span.last {
+          display: inline-block;
+          width: 20%;
+        }
+        span.count {
+          display: inline-block;
+          width: 20%;
+        }
+        span.value {
+          font-size: modular-scale(1);
+        }
+        span.label {
+          display: block;
+          font-family: 'Ubuntu', sans-serif;
+          text-transform: uppercase;
+          font-size: modular-scale(2);
+          font-weight: bold;
+          color: #779;
         }
       }
     }
-    div.details {
-      span.netmask {
-        display: inline-block;
-        width: 20%;
-      }
-      span.first {
-        display: inline-block;
-        width: 20%;
-      }
-      span.last {
-        display: inline-block;
-        width: 20%;
-      }
-      span.count {
-        display: inline-block;
-        width: 20%;
-      }
-      span.value {
-        font-size: modular-scale(1);
-      }
-      span.label {
-        display: block;
-        font-family: 'Ubuntu', sans-serif;
-        text-transform: uppercase;
-        font-size: modular-scale(2);
-        font-weight: bold;
-        color: #779;
-      }
-    }
-  }
 
-  footer {
-    margin-top: 50px;
-    text-align: center;
-    font-size: modular-scale(-1);
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: modular-scale(-1);
+    }
   }
 }
