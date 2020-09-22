@@ -1,15 +1,20 @@
 import './style.scss';
 
 import { Netmask } from 'netmask';
+import queryString from 'query-string';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 class IPAddress extends Component {
   constructor(props) {
+    const defaultIp = '10.88.135.144/28'
+    const search = queryString.parse(location.search);
+    const match = search.ip && search.ip.match(IP_INPUT) || defaultIp.match(IP_INPUT);
+    const [, oct1, oct2, oct3, oct4, cidr] = match;
     super(props);
     this.state = {
-      octets: [10, 88, 135, 144],
-      cidr: 28
+      octets: [oct1, oct2, oct3, oct4],
+      cidr
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -138,9 +143,23 @@ class IPAddress extends Component {
             <span className="label">Count</span>
           </span>
         </div>
+
+        <div>
+            Share: <a href={`?ip=${this.getPretty()}`}>{window.location.origin}/?ip={this.getPretty()}</a>
+        </div>
       </div>
     );
   }
 }
+
+const IP_INPUT = new RegExp (
+  '^'+
+  '([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.'+
+  '([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.'+
+  '([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.'+
+  '([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])'+
+  '(?:\/([0-9]|[1-2][0-9]|3[0-2]))?'+
+  '$'
+);
 
 ReactDOM.render(<IPAddress />, document.getElementById('app'));
