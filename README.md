@@ -4,7 +4,7 @@
 
 [![cidr.png](cidr.png)](https://cidr.xyz)
 
-## Dev
+## Dev(HOW?)
 
 Install dependencies and run the development server:
 
