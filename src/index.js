@@ -13,6 +13,7 @@ class IPAddress extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handlePaste = this.handlePaste.bind(this);
   }
 
   handleChange(event) {
@@ -64,6 +65,30 @@ class IPAddress extends Component {
     }
   }
 
+  handlePaste(event) {
+    const pasteText = event.clipboardData.getData('Text')
+    const regExp = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+    const cidrParts = pasteText.split('/')
+    if (!regExp.test(cidrParts[0])) {
+      alert('You have pasted an invalid IP address!')
+      return false
+    }
+    var octets = this.state.octets;
+    const octetParts = cidrParts[0].split('.')
+    octetParts.map((octet, i) => {
+      octets[i] = octet;
+    })
+    this.setState({
+      octets: octets
+    });
+
+    if (+cidrParts[1] <= 32) {
+      this.setState({
+        cidr: +cidrParts[1]
+      });
+    }
+  }
+
   getPretty() {
     return this.state.octets.join('.') + '/' + this.state.cidr;
   }
@@ -82,6 +107,7 @@ class IPAddress extends Component {
                 data-octet={octet}
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
+                onPaste={this.handlePaste}
                 value={this.state.octets[octet]}
               />
               <span className="dot">{octet == '3' ? '/' : '.'}</span>
@@ -93,6 +119,7 @@ class IPAddress extends Component {
             data-octet="cidr"
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
+            onPaste={this.handlePaste}
             value={this.state.cidr}
           />
         </div>
