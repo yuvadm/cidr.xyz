@@ -68,11 +68,11 @@ class IPAddress extends Component {
   handleWheel(event) {
     var lowerOctetValue = 0;
     var higherOctetValue = event.target.dataset.octet === 'cidr' ? 32 : 255;
-    if (event.deltaY < 0 && event.target.value > lowerOctetValue) {
+    if (event.deltaY > 0 && event.target.value > lowerOctetValue) {
       event.target.value = +event.target.value - 1;
       this.handleChange(event);
     }
-    if (event.deltaY > 0 && event.target.value < higherOctetValue) {
+    if (event.deltaY < 0 && event.target.value < higherOctetValue) {
       event.target.value = +event.target.value + 1;
       this.handleChange(event);
     }
