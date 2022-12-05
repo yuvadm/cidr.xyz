@@ -14,6 +14,10 @@ class IPAddress extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleWheel = this.handleWheel.bind(this);
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("ip")) {
+      this.parse(params.get("ip"));
+    }
   }
 
   handleChange(event) {
@@ -76,6 +80,20 @@ class IPAddress extends Component {
       event.target.value = +event.target.value + 1;
       this.handleChange(event);
     }
+  }
+
+  parse(string) {
+    // Create a regular expression to match the IP range in the query string
+    const regex = /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/;
+
+    // Use the regex to search the query string for the IP range
+    const matches = string.match(regex);
+
+    // Split the IP range into its components (IP address and subnet mask)
+    const [ip, subnet] = matches[0].split("/");
+
+    this.state.octets = ip.split(".").map(octet => parseInt(octet, 10))
+    this.state.cidr = parseInt(subnet, 10)
   }
 
   getPretty() {
