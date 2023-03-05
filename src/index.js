@@ -67,15 +67,11 @@ class IPAddress extends Component {
   }
 
   handlePaste(event) {
-    const pasteText = event.clipboardData.getData('Text')
-    const regExp = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
-    const cidrParts = pasteText.split('/')
-    if (!regExp.test(cidrParts[0])) {
-      alert('You have pasted an invalid IP address!')
-      return false
-    }
+    const pasteText = event.clipboardData.getData('Text');
+    var details = new Netmask(pasteText);
+    const cidrParts = details.toString().split('/');
     var octets = this.state.octets;
-    const octetParts = cidrParts[0].split('.')
+    const octetParts = cidrParts[0].split('.');
     octetParts.map((octet, i) => {
       octets[i] = octet;
     })
@@ -87,6 +83,8 @@ class IPAddress extends Component {
       this.setState({
         cidr: +cidrParts[1]
       });
+    }
+  }
 
   handleWheel(event) {
     var lowerOctetValue = 0;
