@@ -13,6 +13,7 @@ class IPAddress extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handlePaste = this.handlePaste.bind(this);
     this.handleWheel = this.handleWheel.bind(this);
   }
 
@@ -65,6 +66,26 @@ class IPAddress extends Component {
     }
   }
 
+  handlePaste(event) {
+    const pasteText = event.clipboardData.getData('Text');
+    var details = new Netmask(pasteText);
+    const cidrParts = details.toString().split('/');
+    var octets = this.state.octets;
+    const octetParts = cidrParts[0].split('.');
+    octetParts.map((octet, i) => {
+      octets[i] = octet;
+    })
+    this.setState({
+      octets: octets
+    });
+
+    if (+cidrParts[1] <= 32) {
+      this.setState({
+        cidr: +cidrParts[1]
+      });
+    }
+  }
+
   handleWheel(event) {
     var lowerOctetValue = 0;
     var higherOctetValue = event.target.dataset.octet === 'cidr' ? 32 : 255;
@@ -96,6 +117,7 @@ class IPAddress extends Component {
                 data-octet={octet}
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
+                onPaste={this.handlePaste}
                 onWheel={this.handleWheel}
                 value={this.state.octets[octet]}
               />
@@ -108,6 +130,7 @@ class IPAddress extends Component {
             data-octet="cidr"
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
+            onPaste={this.handlePaste}
             onWheel={this.handleWheel}
             value={this.state.cidr}
           />
