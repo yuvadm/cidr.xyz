@@ -101,19 +101,27 @@ body {
     div.details {
       span.netmask {
         display: inline-block;
-        width: 20%;
+        width: 15%;
       }
-      span.first {
+      span.base {
         display: inline-block;
-        width: 20%;
+        width: 15%;
       }
-      span.last {
+      span.broadcast {
         display: inline-block;
-        width: 20%;
+        width: 15%;
       }
       span.count {
         display: inline-block;
-        width: 20%;
+        width: 15%;
+      }
+      span.first {
+        display: inline-block;
+        width: 15%;
+      }
+      span.last {
+        display: inline-block;
+        width: 15%;
       }
       span.value {
         font-size: modular-scale(1);
