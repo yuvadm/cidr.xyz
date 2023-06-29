@@ -115,6 +115,7 @@ class IPAddress extends Component {
                 className="octet"
                 type="text"
                 data-octet={octet}
+                aria-label={"octet "+ octet}
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
                 onPaste={this.handlePaste}
@@ -128,6 +129,7 @@ class IPAddress extends Component {
             className="cidr"
             type="text"
             data-octet="cidr"
+            aria-label="cidr mask"
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             onPaste={this.handlePaste}
