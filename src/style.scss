@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono');
 
+$xl: 87.5em; // 4k and hi-res desktop
+$lg: 60em; // 1080 and hi-res laptops
+$med: 40em; // hi-res tablets and low-res laptops
+$sm: 28em; // mobile and low-res tablets
+$xs: 20em; // mobile only
+
 $color_a: #a101a6;
 $color_b: #d9005b;
 $color_c: #84e900;
@@ -14,7 +20,6 @@ body {
     margin-bottom: 30px;
     margin-left: 40px;
     h1 {
-      font-size: modular-scale(2);
       small {
         text-transform: uppercase;
         color: #669;
@@ -22,8 +27,10 @@ body {
       }
     }
     p {
-      margin-right: 90px;
-      font-size: modular-scale(-1);
+      margin-right: 30px;
+      @media ( min-width: $med ) {
+        margin-right: 60px;
+      }
     }
   }
 
@@ -37,15 +44,21 @@ body {
       input {
         width: 2.5em;
         font-size: 2.7em;
+        @media (max-width: $xl) {
+          font-size: calc(1em + 1.9vw);
+        }
         text-align: center;
         border: 0px;
         border-radius: 3px;
       }
       span.octet {
         span.dot {
-          font-size: 2.7em;
           text-align: center;
           padding: 0.1em 0.13em;
+          font-size: 2.7em;
+          @media (max-width: $xl) {
+            font-size: calc(1em + 1.7vw);
+          }
         }
         &:nth-child(1) input.octet {
           background-color: $color_a;
@@ -74,7 +87,10 @@ body {
           ol {
             li.bit {
               display: inline;
-              padding: 0.4em 0.6em;
+              padding: 0.6em;
+              @media (max-width: $xl) {
+                padding: calc(-0.1em + 0.7vw);
+              }
               margin-left: -1px;
               border: 1px black solid;
             }
@@ -98,47 +114,54 @@ body {
       }
     }
     div.details {
-      span.netmask {
-        display: inline-block;
-        width: 15%;
+      display: inline-flex;
+      justify-content: space-around;
+      width: 100%;
+      @media (min-width: 640px) {
+        width: 640px;
       }
-      span.base {
-        display: inline-block;
-        width: 15%;
-      }
-      span.broadcast {
-        display: inline-block;
-        width: 15%;
-      }
-      span.count {
-        display: inline-block;
-        width: 15%;
-      }
-      span.first {
-        display: inline-block;
-        width: 15%;
-      }
-      span.last {
-        display: inline-block;
-        width: 15%;
-      }
-      span.value {
-        font-size: modular-scale(1);
-      }
-      span.label {
+      span {
         display: block;
-        font-family: 'Ubuntu', sans-serif;
-        text-transform: uppercase;
-        font-size: modular-scale(2);
-        font-weight: bold;
-        color: #656582;
       }
+    }
+    div.break {
+      width: 100%;
+      height: 0px;
+      margin: 0px;
+    }
+    div.usable {
+      display: inline-flex;
+      justify-content: space-around;
+      margin-top: 30px;
+      width: 100%;
+      @media (min-width: 640px) {
+        width: 640px;
+      }
+      span {
+        display: block;
+      }
+    }
+    span.value {
+      font-size: 1.22em;
+      @media (max-width: $xl) {
+        font-size: calc(0.7em + 0.6vw);
+      }
+    }
+    span.label {
+      display: block;
+      font-family: 'Ubuntu', sans-serif;
+      text-transform: uppercase;
+      font-size: 1.22em;
+      @media (max-width: $xl) {
+        font-size: calc(0.7em + 0.6vw);
+      }
+      font-weight: bold;
+      color: #656582;
     }
   }
 
   footer {
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
-    font-size: modular-scale(-1);
   }
 }

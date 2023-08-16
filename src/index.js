@@ -178,6 +178,12 @@ class IPAddress extends Component {
             <span className="value">{details.size.toLocaleString()}</span>
             <span className="label">Count</span>
           </span>
+        </div>
+
+        <div className="break">
+        </div>
+
+        <div className="usable">
           <span className="first">
             <span className="value">{details.first}</span>
             <span className="label">First Usable IP</span>
