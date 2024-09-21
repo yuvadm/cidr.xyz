@@ -7,6 +7,7 @@ export default function Cidr() {
   const [ip, setIp] = useState([10, 88, 135, 144]);
   const [cidr, setCidr] = useState(28);
   const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400", "bg-slate-300"]);
+  const [isShared, setIsShared] = useState(false);
 
   const bits = ip.map(octet => Array.from({ length: 8 }, (_, i) => (octet >> (7 - i)) & 1));
 
@@ -62,6 +63,18 @@ export default function Cidr() {
       setIpOctet(i, value);
     }
   }
+
+  const handleShare = async () => {
+    try {
+      let frag = "#" + ip.join(".") + "/" + cidr;
+      window.location.hash = frag;
+      await navigator.clipboard.writeText("foo");
+      setIsShared(true);
+      setTimeout(() => setIsShared(false), 2000);
+    } catch (err) {
+      console.error('Failed to share CIDR link: ', err);
+    }
+  };
 
   useEffect(() => {
     const fragment = window.location.hash.slice(1);
@@ -144,7 +157,7 @@ export default function Cidr() {
             />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-4 my-10">
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
             {bits.map((octet, i) => <span key={`octet-${i}`} className="px-1">
               {octet.map((bit, j) => <span key={`octet-${i}-bit-${j}`} className={`font-mono border-y ${j == 0 && "border-l"} border-r border-gray-700 px-2 py-1 ${i * 8 + j < cidr ? cols[i] : cols[4]}`}>{bit}</span>)}
             </span>)}
@@ -158,6 +171,16 @@ export default function Cidr() {
               </div>)
             }
           </div>
+
+          <div className="flex justify-end p-5">
+            <button
+              onClick={handleShare}
+              className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-500 rounded-md hover:bg-blue-600"
+            >
+              {isShared ? "Copied!" : "Share"}
+            </button>
+          </div>
+
         </div>
       </div>
 
