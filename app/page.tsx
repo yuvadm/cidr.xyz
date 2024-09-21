@@ -25,7 +25,7 @@ export default function Cidr() {
 
   const handleWheel = (event: React.WheelEvent<HTMLInputElement>, i: number, max: number) => {
     const min = 0;
-    let target = event.currentTarget as HTMLInputElement;
+    const target = event.currentTarget as HTMLInputElement;
     let value = parseInt(target.value);
 
     if (event.deltaY > 0 && value > min) {
@@ -45,7 +45,7 @@ export default function Cidr() {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, i: number, max: number) => {
     const min = 0;
-    let target = event.currentTarget as HTMLInputElement;
+    const target = event.currentTarget as HTMLInputElement;
     let value = parseInt(target.value);
 
     if (event.key == "ArrowDown" && value > min) {
