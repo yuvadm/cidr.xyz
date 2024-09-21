@@ -6,19 +6,10 @@
 
 ## Dev
 
-Install dependencies and run the development server:
+Run the development server:
 
 ```bash
-$ yarn
-$ yarn run start
-```
-
-## Build
-
-Manually building the static content into the `dist/` directory can be done with:
-
-```bash
-$ yarn run build
+$ npm run dev
 ```
 
 ## Docker
@@ -32,4 +23,4 @@ docker run -d --rm -p 80:80 cidr.xyz:0.1
 
 ## Deployment
 
-Deployment is automated from `master` branch via Netlify
+Deployment is automated from `master` branch via Vercel.
