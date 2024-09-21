@@ -76,14 +76,14 @@ export default function Cidr() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
-      <div className="max-w-5xl w-full p-8">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-2">
+      <div className="max-w-6xl w-full sm:p-8 p-2">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           IP / CIDR Calculator
         </h1>
 
         <div className="my-6 text-lg leading-8 text-gray-600">
-          <p>CIDR (Classless Inter-Domain Routing) notation is a compact method for specifying IP address ranges and network masks. It's widely used in network configuration and management.</p>
+          <p>CIDR (Classless Inter-Domain Routing) notation is a compact method for specifying IP address ranges and network masks. It is widely used in network configuration and management.</p>
           <p>An IP address consists of 4 octets, each containing 8 bits that represent values from 0 to 255. In CIDR notation, a forward slash (/) followed by a number indicates the length of the network prefix in bits.</p>
           <p>This prefix length determines the network mask and the number of available host addresses within the specified IP range. This calculator helps you visualize and understand these CIDR blocks, making network planning and configuration easier.</p>
         </div>
@@ -117,12 +117,10 @@ export default function Cidr() {
             />
           </div>
 
-          <div className="text-center text-xl my-10">
-            <div className="bits text-xs">
-              {bits.map((octet, i) => <span key={`octet-${i}`} className="px-4">
-                {octet.map((bit, j) => <span key={`octet-${i}-bit-${j}`} className={`font-mono border-y ${j == 0 && "border-l"} border-r border-gray-700 px-2 py-1 ${i * 8 + j < cidr ? cols[i] : cols[4]}`}>{bit}</span>)}
-              </span>)}
-            </div>
+          <div className="flex flex-wrap justify-center gap-4 my-10">
+            {bits.map((octet, i) => <span key={`octet-${i}`} className="px-1">
+              {octet.map((bit, j) => <span key={`octet-${i}-bit-${j}`} className={`font-mono border-y ${j == 0 && "border-l"} border-r border-gray-700 px-2 py-1 ${i * 8 + j < cidr ? cols[i] : cols[4]}`}>{bit}</span>)}
+            </span>)}
           </div>
 
           <div className="text-center text-xl mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
