@@ -122,13 +122,7 @@ export default function Cidr() {
           IP / CIDR Calculator
         </h1>
 
-        <div className="my-6 text-lg leading-8 text-gray-600">
-          <p>CIDR (Classless Inter-Domain Routing) notation is a compact method for specifying IP address ranges and network masks. It is widely used in network configuration and management.</p>
-          <p>An IP address consists of 4 octets, each containing 8 bits that represent values from 0 to 255. In CIDR notation, a forward slash (/) followed by a number indicates the length of the network prefix in bits.</p>
-          <p>This prefix length determines the network mask and the number of available host addresses within the specified IP range. This calculator helps you visualize and understand these CIDR blocks, making network planning and configuration easier.</p>
-        </div>
-
-        <div className='border border-gray-300 rounded-lg'>
+        <div className="my-6 border border-gray-300 rounded-lg">
           <div className="flex flex-wrap justify-center gap-4 my-10">
             {ip.map((octet, i) => (
               <div key={`octet-${i}`}>
@@ -163,11 +157,11 @@ export default function Cidr() {
             </span>)}
           </div>
 
-          <div className="text-center text-xl mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="text-center text-xl mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {Object.entries(details).map(([label, val]) =>
-              <div className="p-3" key={`detail-${label}`}>
+              <div className="sm:p-3 " key={`detail-${label}`}>
                 <div className="font-mono">{val}</div>
-                <div className="text-lg font-bold tracking-tight text-gray-900 sm:text-3xl">{label}</div>
+                <div className="text-lg font-bold tracking-tight text-slate-500 sm:text-3xl text-2xl">{label}</div>
               </div>)
             }
           </div>
@@ -182,6 +176,13 @@ export default function Cidr() {
           </div>
 
         </div>
+
+        <div className="my-6 text-lg leading-8 text-slate-900">
+          <p>CIDR (Classless Inter-Domain Routing) notation is a compact method for specifying IP address ranges and network masks. It is widely used in network configuration and management.</p>
+          <p>An IP address consists of 4 octets, each containing 8 bits that represent values from 0 to 255. In CIDR notation, a forward slash (/) followed by a number indicates the length of the network prefix in bits.</p>
+          <p>This prefix length determines the network mask and the number of available host addresses within the specified IP range. This calculator helps you visualize and understand these CIDR blocks, making network planning and configuration easier.</p>
+        </div>
+
       </div>
 
       <footer className="text-left">
