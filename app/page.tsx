@@ -158,7 +158,7 @@ export default function Cidr() {
             {Object.entries(details).map(([label, val]) =>
               <div className="sm:p-3 " key={`detail-${label}`}>
                 <div className="font-mono">{val}</div>
-                <div className="text-lg font-bold tracking-tight text-slate-500 sm:text-3xl text-2xl">{label}</div>
+                <div className="font-bold tracking-tight text-slate-500 sm:text-3xl text-2xl">{label}</div>
               </div>)
             }
           </div>
