@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-// import { Netmask } from 'netmask';
+import { Netmask } from 'netmask';
 
 export default function Cidr() {
   const [ip, setIp] = useState([10, 88, 135, 144]);
@@ -23,19 +23,36 @@ export default function Cidr() {
     setIp(newIp);
   }
 
+  const pretty = ip.join('.') + '/' + cidr;
+  const netmask = new Netmask(pretty);
+
+  const details = {
+    "Netmask": netmask.mask,
+    "CIDR Base IP": netmask.base,
+    "Broadcast IP": netmask.broadcast,
+    "Count": netmask.size.toLocaleString(),
+    "First Usable IP": netmask.first,
+    "Last Usable IP": netmask.last
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <div className="max-w-5xl w-full p-8">
-        <h1 className="text-4xl font-bold text-left mb-4">IP / CIDR Visualizer</h1>
-        <p className="text-sm text-left text-gray-600 mb-8">
-          <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> is a notation for describing
-          blocks of IP addresses and is used heavily in various networking configurations. IP addresses contain 4
-          octets, each consisting of 8 bits giving values between 0 and 255. The decimal value that comes after the
-          slash is the number of bits consisting of the routing prefix. This in turn can be translated into a netmask,
-          and also designates how many available addresses are in the block.
-        </p>
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+          IP / CIDR Calculator
+        </h1>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
+        <div className="my-6 text-lg leading-8 text-gray-600">
+          <p><a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> is a notation for describing
+            blocks of IP addresses and is used heavily in various networking configurations.</p>
+          <p>IP addresses contain 4
+            octets, each consisting of 8 bits giving values between 0 and 255. The decimal value that comes after the
+            slash is the number of bits consisting of the routing prefix.</p>
+          <p>This in turn can be translated into a netmask,
+            and also designates how many available addresses are in the block.</p>
+        </div>
+
+        <div className="flex flex-wrap justify-center gap-4 my-8">
           {ip.map((octet, i) => (
             <div key={`octet-${i}`}>
               <input
@@ -67,21 +84,24 @@ export default function Cidr() {
           </div>
         </div>
 
-        <div className="text-center text-xl mb-8">
-          <span className="font-semibold">IP Address: </span>
-          {ip.join('.')}
-          <span className="font-semibold ml-4">CIDR: </span>/{cidr}
+        <div className="text-center text-xl mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {Object.entries(details).map(([label, val]) =>
+            <div className="p-3" key={`detail-${label}`}>
+              <div className="font-mono">{val}</div>
+              <div className="text-lg font-bold tracking-tight text-gray-900 sm:text-3xl">{label}</div>
+            </div>)
+          }
         </div>
-
-        <footer className="flex justify-center space-x-4">
-          <a href="#" className="flex items-center text-blue-600 hover:underline">
-            GitHub
-          </a>
-          <a href="#" className="flex items-center text-blue-600 hover:underline">
-            About
-          </a>
-        </footer>
       </div>
+
+      <footer className="flex justify-center space-x-4">
+        <a href="#" className="flex items-center text-blue-600 hover:underline">
+          GitHub
+        </a>
+        <a href="#" className="flex items-center text-blue-600 hover:underline">
+          About
+        </a>
+      </footer>
     </div >
   );
 }
