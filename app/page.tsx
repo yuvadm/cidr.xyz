@@ -23,30 +23,10 @@ export default function Cidr() {
     setIp(newIp);
   }
 
-  // const handleChange(event) {
-  //   var octets = this.state.octets;
-  //   var val = +event.target.value.replace(/[^0-9]/g, '');
-  //   var octet = event.target.attributes['data-octet'].value;
-  //   if (octet == 'cidr') {
-  //     if (val <= 32) {
-  //       this.setState({
-  //         cidr: val
-  //       });
-  //     }
-  //   } else {
-  //     if (val <= 255) {
-  //       octets[+octet] = val;
-  //       this.setState({
-  //         octets: octets
-  //       });
-  //     }
-  //   }
-  // }
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-4">
       <div className="max-w-5xl w-full p-8">
-        <h1 className="text-4xl font-bold text-center mb-4">CIDR / IP Visualizer</h1>
+        <h1 className="text-4xl font-bold text-left mb-4">IP / CIDR Visualizer</h1>
         <p className="text-sm text-left text-gray-600 mb-8">
           <a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> is a notation for describing
           blocks of IP addresses and is used heavily in various networking configurations. IP addresses contain 4
