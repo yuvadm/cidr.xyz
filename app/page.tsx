@@ -6,7 +6,7 @@ import { Netmask } from 'netmask';
 export default function Cidr() {
   const [ip, setIp] = useState([10, 88, 135, 144]);
   const [cidr, setCidr] = useState(28);
-  const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400"]);
+  const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400", "bg-slate-300"]);
 
   const bits = ip.map(octet => Array.from({ length: 8 }, (_, i) => (octet >> (7 - i)) & 1));
 
@@ -92,59 +92,56 @@ export default function Cidr() {
             and also designates how many available addresses are in the block.</p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 my-8">
-          {ip.map((octet, i) => (
-            <div key={`octet-${i}`}>
-              <input
-                key={`inp-${i}`}
-                type="text"
-                value={octet}
-                onChange={(e) => setIpOctet(i, parseOctet(e.target.value, 255))}
-                onWheel={(e) => handleWheel(e, i, 255)}
-                onKeyDown={(e) => handleKeyDown(e, i, 255)}
-                className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
-                maxLength={3}
-              />
-              <span className="text-5xl pl-4" key={`sep-${i}`}>{i == 3 ? "/" : "."}</span>
-            </div>
-          ))}
-          <input
-            type="text"
-            key={`inp-cidr`}
-            value={cidr}
-            onChange={(e) => setCidr(parseOctet(e.target.value, 32))}
-            onWheel={(e) => handleWheel(e, 4, 32)}
-            onKeyDown={(e) => handleKeyDown(e, 4, 32)}
-            className="w-20 h-20 text-3xl text-center rounded-md bg-slate-300"
-            maxLength={2}
-          />
-        </div>
-
-        <div className="text-center text-xl mb-8">
-          <div className="bits text-xs">
-            {bits.map((octet, i) => <span key={`octet-${i}`} className="px-4">
-              {octet.map((bit, j) => <span key={`octet-${i}-bit-${j}`} className={`font-mono border-y ${j == 0 && "border-l"} border-r border-gray-700 px-2 py-1 ${cols[i]}`}>{bit}</span>)}
-            </span>)}
+        <div className='border border-gray-300 rounded-lg'>
+          <div className="flex flex-wrap justify-center gap-4 my-10">
+            {ip.map((octet, i) => (
+              <div key={`octet-${i}`}>
+                <input
+                  key={`inp-${i}`}
+                  type="text"
+                  value={octet}
+                  onChange={(e) => setIpOctet(i, parseOctet(e.target.value, 255))}
+                  onWheel={(e) => handleWheel(e, i, 255)}
+                  onKeyDown={(e) => handleKeyDown(e, i, 255)}
+                  className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
+                  maxLength={3}
+                />
+                <span className="text-5xl pl-4" key={`sep-${i}`}>{i == 3 ? "/" : "."}</span>
+              </div>
+            ))}
+            <input
+              type="text"
+              key={`inp-cidr`}
+              value={cidr}
+              onChange={(e) => setCidr(parseOctet(e.target.value, 32))}
+              onWheel={(e) => handleWheel(e, 4, 32)}
+              onKeyDown={(e) => handleKeyDown(e, 4, 32)}
+              className={`w-20 h-20 text-3xl text-center rounded-md ${cols[4]}`}
+              maxLength={2}
+            />
           </div>
-        </div>
 
-        <div className="text-center text-xl mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {Object.entries(details).map(([label, val]) =>
-            <div className="p-3" key={`detail-${label}`}>
-              <div className="font-mono">{val}</div>
-              <div className="text-lg font-bold tracking-tight text-gray-900 sm:text-3xl">{label}</div>
-            </div>)
-          }
+          <div className="text-center text-xl my-10">
+            <div className="bits text-xs">
+              {bits.map((octet, i) => <span key={`octet-${i}`} className="px-4">
+                {octet.map((bit, j) => <span key={`octet-${i}-bit-${j}`} className={`font-mono border-y ${j == 0 && "border-l"} border-r border-gray-700 px-2 py-1 ${i * 8 + j < cidr ? cols[i] : cols[4]}`}>{bit}</span>)}
+              </span>)}
+            </div>
+          </div>
+
+          <div className="text-center text-xl mb-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {Object.entries(details).map(([label, val]) =>
+              <div className="p-3" key={`detail-${label}`}>
+                <div className="font-mono">{val}</div>
+                <div className="text-lg font-bold tracking-tight text-gray-900 sm:text-3xl">{label}</div>
+              </div>)
+            }
+          </div>
         </div>
       </div>
 
-      <footer className="flex justify-center space-x-4">
-        <a href="#" className="flex items-center text-blue-600 hover:underline">
-          GitHub
-        </a>
-        <a href="#" className="flex items-center text-blue-600 hover:underline">
-          About
-        </a>
+      <footer className="text-left">
+        <p>Created by <a href="https://yuv.al" className="text-blue-600 hover:underline">Yuval Adam</a>. Source available on <a href="https://github.com/yuvadm/cidr.xyz" className="text-blue-600 hover:underline">Github</a>.</p>
       </footer>
     </div >
   );
