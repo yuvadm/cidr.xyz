@@ -75,7 +75,6 @@ export default function Cidr() {
 
   useEffect(() => {
     const fragment = window.location.hash.slice(1);
-    console.log(fragment);
     if (fragment) {
       const parts = fragment.split("/");
       const ip = parts[0].split(".").map(Number);
