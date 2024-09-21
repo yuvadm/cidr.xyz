@@ -114,11 +114,11 @@ export default function Cidr() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-2">
       <div className="max-w-6xl w-full sm:p-8 p-2">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+        <h1 className="my-3 sm:my-1 text-center sm:text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
           IP / CIDR Calculator
         </h1>
 
-        <div className="my-6 border border-gray-300 rounded-lg">
+        <div className="my-6 border-0 sm:border border-gray-300 rounded-lg">
           <div className="flex flex-wrap justify-center gap-4 my-10">
             {ip.map((octet, i) => (
               <div key={`octet-${i}`}>
