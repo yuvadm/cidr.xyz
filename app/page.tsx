@@ -1,12 +1,12 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Netmask } from 'netmask';
+// import { Netmask } from 'netmask';
 
 export default function Cidr() {
   const [ip, setIp] = useState([10, 88, 135, 144]);
   const [cidr, setCidr] = useState(28);
-  const [cols, _setCols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400"]);
+  const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400"]);
 
   const bits = ip.map(octet => Array.from({ length: 8 }, (_, i) => (octet >> (7 - i)) & 1));
 
