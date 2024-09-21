@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Netmask } from 'netmask';
 
 export default function Cidr() {
@@ -11,7 +11,7 @@ export default function Cidr() {
   const bits = ip.map(octet => Array.from({ length: 8 }, (_, i) => (octet >> (7 - i)) & 1));
 
   const parseOctet = (val: string, max: number) => {
-    const num = parseInt(val);
+    const num = Number(val);
     if (isNaN(num) || num < 0) return 0;
     if (num > max) return max;
     return num;
@@ -62,6 +62,33 @@ export default function Cidr() {
       setIpOctet(i, value);
     }
   }
+
+  useEffect(() => {
+    const fragment = window.location.hash.slice(1);
+    console.log(fragment);
+    if (fragment) {
+      const parts = fragment.split("/");
+      const ip = parts[0].split(".").map(Number);
+      const cidr = Number(parts[1]);
+
+      if (ip.length != 4) {
+        return
+      }
+
+      ip.forEach(octet => {
+        if (octet < 0 || octet > 255) {
+          return
+        }
+      })
+
+      if (cidr < 0 || cidr > 32) {
+        return
+      }
+
+      setIp(ip);
+      setCidr(cidr);
+    }
+  }, []);
 
   const pretty = ip.join('.') + '/' + cidr;
   const netmask = new Netmask(pretty);
