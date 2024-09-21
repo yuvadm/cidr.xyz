@@ -83,13 +83,9 @@ export default function Cidr() {
         </h1>
 
         <div className="my-6 text-lg leading-8 text-gray-600">
-          <p><a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a> is a notation for describing
-            blocks of IP addresses and is used heavily in various networking configurations.</p>
-          <p>IP addresses contain 4
-            octets, each consisting of 8 bits giving values between 0 and 255. The decimal value that comes after the
-            slash is the number of bits consisting of the routing prefix.</p>
-          <p>This in turn can be translated into a netmask,
-            and also designates how many available addresses are in the block.</p>
+          <p>CIDR (Classless Inter-Domain Routing) notation is a compact method for specifying IP address ranges and network masks. It's widely used in network configuration and management.</p>
+          <p>An IP address consists of 4 octets, each containing 8 bits that represent values from 0 to 255. In CIDR notation, a forward slash (/) followed by a number indicates the length of the network prefix in bits.</p>
+          <p>This prefix length determines the network mask and the number of available host addresses within the specified IP range. This calculator helps you visualize and understand these CIDR blocks, making network planning and configuration easier.</p>
         </div>
 
         <div className='border border-gray-300 rounded-lg'>
