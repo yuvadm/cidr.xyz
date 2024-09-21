@@ -65,15 +65,11 @@ export default function Cidr() {
   }
 
   const handleShare = async () => {
-    try {
-      let frag = "#" + ip.join(".") + "/" + cidr;
-      window.location.hash = frag;
-      await navigator.clipboard.writeText("foo");
-      setIsShared(true);
-      setTimeout(() => setIsShared(false), 2000);
-    } catch (err) {
-      console.error('Failed to share CIDR link: ', err);
-    }
+    const frag = "#" + ip.join(".") + "/" + cidr;
+    window.location.hash = frag;
+    await navigator.clipboard.writeText(window.location.toString());
+    setIsShared(true);
+    setTimeout(() => setIsShared(false), 2000);
   };
 
   useEffect(() => {
