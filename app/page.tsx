@@ -23,6 +23,26 @@ export default function Cidr() {
     setIp(newIp);
   }
 
+  const handleWheel = (event: React.WheelEvent<HTMLInputElement>, i: number, max: number) => {
+    const min = 0;
+    let target = event.currentTarget as HTMLInputElement;
+    let value = parseInt(target.value);
+
+    if (event.deltaY > 0 && value > min) {
+      value -= 1;
+    }
+    if (event.deltaY < 0 && value < max) {
+      value += 1;
+    }
+
+    if (i == 4) {
+      setCidr(value);
+    }
+    else {
+      setIpOctet(i, value);
+    }
+  }
+
   const pretty = ip.join('.') + '/' + cidr;
   const netmask = new Netmask(pretty);
 
@@ -60,6 +80,7 @@ export default function Cidr() {
                 type="text"
                 value={octet}
                 onChange={(e) => setIpOctet(i, parseOctet(e.target.value, 255))}
+                onWheel={(e) => handleWheel(e, i, 255)}
                 className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
                 maxLength={3}
               />
@@ -71,6 +92,7 @@ export default function Cidr() {
             key={`inp-cidr`}
             value={cidr}
             onChange={(e) => setCidr(parseOctet(e.target.value, 32))}
+            onWheel={(e) => handleWheel(e, 4, 32)}
             className="w-20 h-20 text-3xl text-center rounded-md bg-slate-300"
             maxLength={2}
           />
