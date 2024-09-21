@@ -25,6 +25,7 @@ export default function Cidr() {
   }
 
   const handleWheel = (event: React.WheelEvent<HTMLInputElement>, i: number, max: number) => {
+    event.preventDefault();
     const min = 0;
     const target = event.currentTarget as HTMLInputElement;
     let value = parseInt(target.value);
