@@ -43,6 +43,26 @@ export default function Cidr() {
     }
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>, i: number, max: number) => {
+    const min = 0;
+    let target = event.currentTarget as HTMLInputElement;
+    let value = parseInt(target.value);
+
+    if (event.key == "ArrowDown" && value > min) {
+      value -= 1;
+    }
+    if (event.key == "ArrowUp" && value < max) {
+      value += 1;
+    }
+
+    if (i == 4) {
+      setCidr(value);
+    }
+    else {
+      setIpOctet(i, value);
+    }
+  }
+
   const pretty = ip.join('.') + '/' + cidr;
   const netmask = new Netmask(pretty);
 
@@ -81,6 +101,7 @@ export default function Cidr() {
                 value={octet}
                 onChange={(e) => setIpOctet(i, parseOctet(e.target.value, 255))}
                 onWheel={(e) => handleWheel(e, i, 255)}
+                onKeyDown={(e) => handleKeyDown(e, i, 255)}
                 className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
                 maxLength={3}
               />
@@ -93,6 +114,7 @@ export default function Cidr() {
             value={cidr}
             onChange={(e) => setCidr(parseOctet(e.target.value, 32))}
             onWheel={(e) => handleWheel(e, 4, 32)}
+            onKeyDown={(e) => handleKeyDown(e, 4, 32)}
             className="w-20 h-20 text-3xl text-center rounded-md bg-slate-300"
             maxLength={2}
           />
