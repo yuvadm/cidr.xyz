@@ -50,11 +50,29 @@ export default function Cidr() {
     const target = event.currentTarget as HTMLInputElement;
     let value = parseInt(target.value);
 
-    if (event.key == "ArrowDown" && value > min) {
+    if (event.key === "ArrowDown" && value > min) {
       value -= 1;
     }
-    if (event.key == "ArrowUp" && value < max) {
+    else if (event.key === "ArrowUp" && value < max) {
       value += 1;
+    }
+    else if (event.key === '.') {
+      event.preventDefault();
+      const parent = (event.target as Node).parentNode;
+      const next = parent?.nextSibling?.firstChild;
+      if (next instanceof HTMLInputElement) {
+        next.select();
+        next.focus();
+      }
+    }
+    else if (event.key === "/") {
+      event.preventDefault();
+      const parent = (event.target as Node).parentNode;
+      const mask = parent?.nextSibling;
+      if (mask instanceof HTMLInputElement) {
+        mask.select();
+        mask.focus();
+      }
     }
 
     if (i == 4) {
