@@ -123,7 +123,7 @@ export default function Cidr() {
   const details = {
     "Netmask": netmask.mask,
     "CIDR Base IP": netmask.base,
-    "Broadcast IP": netmask.broadcast,
+    "Broadcast IP": netmask.broadcast || "None",
     "Count": netmask.size.toLocaleString(),
     "First Usable IP": netmask.first,
     "Last Usable IP": netmask.last

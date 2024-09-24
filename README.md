@@ -6,9 +6,10 @@
 
 ## Dev
 
-Run the development server:
+Install dependencies and run the development server:
 
 ```bash
+$ npm install
 $ npm run dev
 ```
 
