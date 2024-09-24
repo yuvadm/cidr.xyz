@@ -7,6 +7,7 @@ export default function Cidr() {
   const [ip, setIp] = useState([10, 88, 135, 144]);
   const [cidr, setCidr] = useState(28);
   const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400", "bg-slate-300"]);
+  const [isCopied, setIsCopied] = useState(false);
   const [isShared, setIsShared] = useState(false);
 
   const bits = ip.map(octet => Array.from({ length: 8 }, (_, i) => (octet >> (7 - i)) & 1));
@@ -113,6 +114,12 @@ export default function Cidr() {
     updateCidrString(text);
   }
 
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(pretty);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  };
+
   const handleShare = async () => {
     const frag = "#" + ip.join(".") + "/" + cidr;
     window.location.hash = frag;
@@ -194,12 +201,22 @@ export default function Cidr() {
           </div>
 
           <div className="flex justify-end p-5">
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-500 rounded-md hover:bg-blue-600"
-            >
-              {isShared ? "Copied!" : "Share"}
-            </button>
+            <div className="mx-2">
+              <button
+                onClick={handleCopy}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-500 rounded-md hover:bg-blue-600"
+              >
+                {isCopied ? "Copied!" : "Copy CIDR"}
+              </button>
+            </div>
+            <div className="mx-2">
+              <button
+                onClick={handleShare}
+                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-500 rounded-md hover:bg-blue-600"
+              >
+                {isShared ? "Copied!" : "Copy Share Link"}
+              </button>
+            </div>
           </div>
 
         </div>
