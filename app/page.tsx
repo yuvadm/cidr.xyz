@@ -83,6 +83,36 @@ export default function Cidr() {
     }
   }
 
+  const updateCidrString = (val: string) => {
+    const parts = val.split("/");
+    const ip = parts[0].split(".").map(Number);
+    const cidr = Number(parts[1]);
+
+    if (ip.length != 4) {
+      return
+    }
+
+    ip.forEach(octet => {
+      if (Number.isNaN(octet) || octet < 0 || octet > 255) {
+        return
+      }
+    })
+
+    if (Number.isNaN(cidr) || cidr < 0 || cidr > 32) {
+      return
+    }
+
+    setIp(ip);
+    setCidr(cidr);
+  }
+
+  const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    if (event.clipboardData === null) return;
+    const text = event.clipboardData.getData('Text');
+    updateCidrString(text);
+  }
+
   const handleShare = async () => {
     const frag = "#" + ip.join(".") + "/" + cidr;
     window.location.hash = frag;
@@ -94,26 +124,7 @@ export default function Cidr() {
   useEffect(() => {
     const fragment = window.location.hash.slice(1);
     if (fragment) {
-      const parts = fragment.split("/");
-      const ip = parts[0].split(".").map(Number);
-      const cidr = Number(parts[1]);
-
-      if (ip.length != 4) {
-        return
-      }
-
-      ip.forEach(octet => {
-        if (octet < 0 || octet > 255) {
-          return
-        }
-      })
-
-      if (cidr < 0 || cidr > 32) {
-        return
-      }
-
-      setIp(ip);
-      setCidr(cidr);
+      updateCidrString(fragment);
     }
   }, []);
 
@@ -147,6 +158,7 @@ export default function Cidr() {
                   onChange={(e) => setIpOctet(i, parseOctet(e.target.value, 255))}
                   onWheel={(e) => handleWheel(e, i, 255)}
                   onKeyDown={(e) => handleKeyDown(e, i, 255)}
+                  onPaste={handlePaste}
                   className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
                   maxLength={3}
                 />
@@ -160,6 +172,7 @@ export default function Cidr() {
               onChange={(e) => setCidr(parseOctet(e.target.value, 32))}
               onWheel={(e) => handleWheel(e, 4, 32)}
               onKeyDown={(e) => handleKeyDown(e, 4, 32)}
+              onPaste={handlePaste}
               className={`w-20 h-20 text-3xl text-center rounded-md ${cols[4]}`}
               maxLength={2}
             />
