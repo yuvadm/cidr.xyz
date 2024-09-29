@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Interactive IP address and CIDR range calculator and visualizer - cidr.xyz",
-  description: "Explore our interactive tool for calculating and visualizing IP addresses and CIDR ranges. Perfect for network administrators and IT professionals, cidr.xyz offers easy-to-use features for subnet analysis, IP range calculations, and network planning.",
+  title: "Interactive IP address and CIDR range calculator - cidr.xyz",
+  description: "Interactive tool for IP and CIDR calculations. Visualize subnet analysis and IP ranges. Educational resource for network planning and IT learning.",
 };
 
 export default function RootLayout({
