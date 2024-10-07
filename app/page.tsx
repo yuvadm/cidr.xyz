@@ -98,12 +98,11 @@ export default function Cidr() {
         return
       }
     })
+    setIp(ip);
 
     if (Number.isNaN(cidr) || cidr < 0 || cidr > 32) {
       return
     }
-
-    setIp(ip);
     setCidr(cidr);
   }
 
