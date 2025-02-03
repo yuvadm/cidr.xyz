@@ -167,6 +167,7 @@ export default function Cidr() {
                   onPaste={handlePaste}
                   className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
                   maxLength={3}
+                  aria-label={`Octet ${i + 1}`}
                 />
                 <span className="text-5xl pl-4" key={`sep-${i}`}>{i == 3 ? "/" : "."}</span>
               </div>
@@ -181,6 +182,7 @@ export default function Cidr() {
               onPaste={handlePaste}
               className={`w-20 h-20 text-3xl text-center rounded-md ${cols[4]}`}
               maxLength={2}
+              aria-label={`Network bits`}
             />
           </div>
 
@@ -203,7 +205,7 @@ export default function Cidr() {
             <div className="mx-2">
               <button
                 onClick={handleCopy}
-                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-500 rounded-md hover:bg-blue-600"
+                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-600 rounded-md hover:bg-blue-700"
               >
                 {isCopied ? "Copied!" : "Copy CIDR"}
               </button>
@@ -211,7 +213,7 @@ export default function Cidr() {
             <div className="mx-2">
               <button
                 onClick={handleShare}
-                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-500 rounded-md hover:bg-blue-600"
+                className="flex items-center gap-2 px-4 py-2 text-sm text-gray-100 bg-blue-600 rounded-md hover:bg-blue-700"
               >
                 {isShared ? "Copied!" : "Copy Share Link"}
               </button>
