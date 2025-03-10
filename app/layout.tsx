@@ -16,7 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Interactive visual CIDR and IP range calculator - cidr.xyz",
+  title: "Interactive visual CIDR and IP range calculator",
   description: "Interactive tool for IP and CIDR calculations. Visualize subnet analysis and IP ranges. Educational resource for network planning and IT learning.",
 };
 
