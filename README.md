@@ -15,4 +15,4 @@ $ npm run dev
 
 ## Deployment
 
-Deployment is automated from `master` branch via Vercel.
+Deployment is automated from `master` branch via Cloudflare Pages.
