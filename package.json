@@ -1,7 +1,8 @@
 {
-  "name": "cidrxyz",
+  "name": "cidr.xyz",
   "type": "module",
-  "version": "0.0.1",
+  "version": "3.0.0",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
