@@ -16,3 +16,5 @@ $ npm run dev
 ## Deployment
 
 Deployment is automated from `master` branch via Vercel.
+
+<GoogleAnalytics gaId="G-31LHNP2G97" />
