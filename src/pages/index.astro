@@ -2,6 +2,7 @@
 import Cidr from "../components/Cidr";
 
 import "../styles/global.css";
+import { GOOGLE_ANALYTICS_ID } from "../config";
 
 const metadata = {
 	title: "Interactive visual CIDR and IP range calculator",
@@ -15,8 +16,19 @@ const metadata = {
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
 		<title>{metadata.title}</title>
+		<script
+			async
+			src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+		></script>
+		<script define:vars={{ GOOGLE_ANALYTICS_ID }} is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", GOOGLE_ANALYTICS_ID);
+		</script>
 	</head>
 	<body>
 		<div
