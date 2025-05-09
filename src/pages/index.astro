@@ -1,5 +1,6 @@
 ---
 import Cidr from "../components/Cidr";
+import { faqs } from "../content/faqs.ts";
 
 import "../styles/global.css";
 import { GOOGLE_ANALYTICS_ID } from "../config";
@@ -8,6 +9,16 @@ const metadata = {
 	title: "Interactive visual CIDR and IP range calculator",
 	description:
 		"Instantly compute and visualize CIDR subnets, IP ranges and masks. Free online tool for accurate network design, planning and IT education.",
+};
+
+const faqJsonLd = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+	mainEntity: faqs.map(({ q, a }) => ({
+		"@type": "Question",
+		name: q,
+		acceptedAnswer: { "@type": "Answer", text: a },
+	})),
 };
 ---
 
@@ -67,29 +78,52 @@ const metadata = {
 
 				<Cidr client:load />
 
-				<div class="my-6 text-lg leading-8 text-slate-900">
-					<p>
-						CIDR (Classless Inter-Domain Routing) notation is a
-						compact method for specifying IP address ranges and
-						network masks. It is widely used in network
-						configuration and management.
-					</p>
-					<p>
-						An IP address consists of 4 octets, each containing 8
-						bits that represent values from 0 to 255. In CIDR
-						notation, a forward slash (/) followed by a number
-						indicates the length of the network prefix in bits.
-					</p>
-					<p>
-						This prefix length determines the network mask and the
-						number of available host addresses within the specified
-						IP range. This calculator helps you visualize and
-						understand these CIDR blocks, making network planning
-						and configuration easier.
-					</p>
-				</div>
+				<section id="faq" class="mx-auto mt-12 max-w-3xl px-4 sm:px-0">
+					<h2 id="faq" class="mb-4 text-2xl font-bold">
+						CIDR & Subnetting FAQ
+					</h2>
+
+					<dl class="space-y-2">
+						{
+							faqs.map(({ q, a }) => (
+								<details class="group rounded-lg bg-white shadow-sm open:shadow-md transition">
+									<summary
+										class="flex cursor-pointer list-none items-center justify-between
+								 rounded-lg px-4 py-3 font-semibold text-gray-900
+								 hover:bg-gray-50"
+									>
+										{q}
+										<svg
+											class="h-5 w-5 transform text-gray-400 transition group-open:rotate-180"
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M19 9l-7 7-7-7"
+											/>
+										</svg>
+									</summary>
+									<dd class="px-4 pb-4 pt-1 text-gray-700">
+										{a}
+									</dd>
+								</details>
+							))
+						}
+					</dl>
+				</section>
+
+				<script
+					type="application/ld+json"
+					is:inline
+					set:html={JSON.stringify(faqJsonLd, null, 2)}
+				/>
 			</div>
-			<footer class="text-left">
+			<footer class="my-4 text-left">
 				<p>
 					Created by <a
 						href="https://yuv.al"
