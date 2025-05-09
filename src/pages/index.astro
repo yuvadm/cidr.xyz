@@ -17,6 +17,21 @@ const metadata = {
 		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<title>{metadata.title}</title>
+		<meta name="description" content={metadata.description} />
+
+		<meta name="robots" content="index, follow" />
+		<link rel="canonical" href="https://cidr.xyz" />
+
+		<meta property="og:title" content={metadata.title} />
+		<meta property="og:description" content={metadata.description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://cidr.xyz" />
+		<meta property="og:site_name" content="CIDR.xyz" />
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={metadata.title} />
+		<meta name="twitter:description" content={metadata.description} />
+
 		<script
 			async
 			src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
