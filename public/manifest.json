@@ -4,8 +4,8 @@
   "description": "Interactive visual CIDR and IP range calculator",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0066cc",
+  "background_color": "#eff6ff",
+  "theme_color": "#00bcd4",
   "icons": [
     {
       "src": "/ico/favicon.ico",
