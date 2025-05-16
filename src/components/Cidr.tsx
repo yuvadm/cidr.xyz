@@ -221,7 +221,7 @@ export default function Cidr() {
 
 
     return (
-        <div className="my-6 border-0 sm:border border-gray-300 rounded-lg bg-white/70 shadow-md">
+        <div className="pt-1 my-6 border-0 sm:border border-gray-300 rounded-lg bg-white/70 shadow-md">
             <div className="flex flex-wrap justify-center gap-4 my-10">
                 {ip.map((octet, i) => (
                     <div key={`octet-${i}`}>
@@ -273,7 +273,7 @@ export default function Cidr() {
                 }
             </div>
 
-            <div className="flex justify-end p-5">
+            <div className="flex justify-center lg:justify-end p-5">
                 <div className="mx-2">
                     <button
                         onClick={handleCopy}
