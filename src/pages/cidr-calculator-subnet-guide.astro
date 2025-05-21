@@ -26,16 +26,8 @@ import { Content as GuideContent } from "../content/cidr-guide.md";
 ---
 
 <Layout title={title} description={description}>
-    {
-        /**
-    ────────────────────────────────────────────────────────────
-    Hero
-    ────────────────────────────────────────────────────────────*/
-    }
-    <header
-        class="relative isolate overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-white rounded-xl shadow-sm"
-    >
-        <div class="mx-auto max-w-7xl px-4 py-20 sm:py-24 lg:px-6 text-center">
+    <header>
+        <div class="mx-auto max-w-7xl px-4 py-2 sm:py-4 lg:px-6 text-center">
             <h1
                 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl"
             >
@@ -48,51 +40,57 @@ import { Content as GuideContent } from "../content/cidr-guide.md";
         </div>
     </header>
 
-    {
-        /**
-    ────────────────────────────────────────────────────────────
-    Calculator block
-    ────────────────────────────────────────────────────────────*/
-    }
-    <section class="mx-auto mt-12 max-w-4xl px-2 sm:px-4">
+    <section>
         <Cidr client:load />
     </section>
 
-    {
-        /**
-    ────────────────────────────────────────────────────────────
-    Table of Contents (desktop only for cleanliness)
-    ────────────────────────────────────────────────────────────*/
-    }
     <nav
         aria-label="Page sections"
-        class="hidden lg:block sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-gray-200"
+        class="hidden sm:block sticky top-0 z-10 pt-1 my-6 border-0 sm:border border-gray-300 rounded-lg bg-white/70 shadow-md"
     >
         <div class="mx-auto max-w-4xl px-4">
             <ul
-                class="flex flex-wrap justify-center gap-6 py-3 text-sm font-medium text-gray-600"
+                class="flex flex-wrap justify-center gap-8 py-3 text-base font-medium text-gray-700"
             >
                 <li>
-                    <a href="#what-is-cidr" class="hover:text-blue-600"
+                    <a
+                        href="#what-is-cidr"
+                        class="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200"
                         >What is CIDR?</a
                     >
                 </li>
                 <li>
-                    <a href="#cidr-to-ip" class="hover:text-blue-600"
+                    <a
+                        href="#cidr-to-ip"
+                        class="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200"
                         >CIDR → IP range</a
                     >
                 </li>
                 <li>
-                    <a href="#subnetting-tutorial" class="hover:text-blue-600"
+                    <a
+                        href="#subnetting-tutorial"
+                        class="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200"
                         >Subnetting tutorial</a
                     >
                 </li>
                 <li>
-                    <a href="#ipv6" class="hover:text-blue-600">IPv6 basics</a>
+                    <a
+                        href="#ipv6"
+                        class="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200"
+                        >IPv6 basics</a
+                    >
                 </li>
-                <li><a href="#faq" class="hover:text-blue-600">FAQ</a></li>
                 <li>
-                    <a href="#resources" class="hover:text-blue-600"
+                    <a
+                        href="#faq"
+                        class="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200"
+                        >FAQ</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="#resources"
+                        class="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-700 transition-colors duration-200"
                         >Resources</a
                     >
                 </li>
