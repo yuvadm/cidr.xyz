@@ -1,53 +1,22 @@
 ---
-import { GOOGLE_ANALYTICS_ID } from "../config";
-
-import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
 
 const title = "404 - Page Not Found";
 ---
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/ico" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width" />
-        <title>{title}</title>
-        <meta name="robots" content="noindex, follow" />
+<Layout title={title} noindex={true}>
+    <h1
+        class="my-3 sm:my-1 text-center sm:text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+    >
+        404 - Page Not Found
+    </h1>
 
-        <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-        ></script>
-        <script define:vars={{ GOOGLE_ANALYTICS_ID }} is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", GOOGLE_ANALYTICS_ID);
-        </script>
-    </head>
-
-    <body>
-        <div
-            class="min-h-screen flex flex-col items-center justify-center bg-gray-100 p-2"
+    <div class="my-6 text-lg leading-8 text-slate-900">
+        <p class="mb-8">
+            The page you're looking for doesn't exist.
+        </p>
+        <a href="/" class="text-blue-600 hover:underline"
+            >← Back to IP / CIDR Calculator</a
         >
-            <div class="max-w-6xl w-full sm:p-8 p-2">
-                <h1
-                    class="my-3 sm:my-1 text-center sm:text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
-                >
-                    404 - Page Not Found
-                </h1>
-
-                <div class="my-6 text-lg leading-8 text-slate-900">
-                    <p class="mb-8">
-                        The page you're looking for doesn't exist.
-                    </p>
-                    <a href="/" class="text-blue-600 hover:underline"
-                        >← Back to IP / CIDR Calculator</a
-                    >
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+    </div>
+</Layout>

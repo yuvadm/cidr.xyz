@@ -1,15 +1,10 @@
 ---
+import Layout from "../layouts/Layout.astro";
 import Cidr from "../components/Cidr";
 import { faqs } from "../content/faqs.ts";
 
-import "../styles/global.css";
-import { GOOGLE_ANALYTICS_ID } from "../config";
-
-const metadata = {
-	title: "Interactive visual CIDR and IP range calculator",
-	description:
-		"Instantly compute and visualize CIDR subnets, IP ranges and masks. Free online tool for accurate network design, planning and IT education.",
-};
+const title = "Interactive visual CIDR and IP range calculator";
+const description = "Instantly compute and visualize CIDR subnets, IP ranges and masks. Free online tool for accurate network design, planning and IT education.";
 
 const faqJsonLd = {
 	"@context": "https://schema.org",
@@ -22,146 +17,63 @@ const faqJsonLd = {
 };
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/x-icon" href="/ico/favicon.ico" />
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/ico/apple-touch-icon.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="192x192"
-			href="/ico/icon-192.png"
-		/>
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="512x512"
-			href="/ico/icon-512.png"
-		/>
-		<link rel="manifest" href="/manifest.json" />
-		<meta name="theme-color" content="#0066cc" />
-		<meta name="viewport" content="width=device-width" />
-		<title>{metadata.title}</title>
-		<meta name="description" content={metadata.description} />
+<Layout title={title} description={description}>
+	<h1
+		class="my-3 sm:my-1 text-center sm:text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+	>
+		IP / CIDR Calculator
+	</h1>
+	<h2 class="pt-1 text-xl text-center sm:text-left text-gray-600">
+		Visualize and Calculate Network Ranges with IPv4 CIDR Blocks
+	</h2>
 
-		<meta name="robots" content="index, follow" />
-		<link rel="canonical" href="https://cidr.xyz" />
+	<Cidr client:load />
 
-		<meta property="og:title" content={metadata.title} />
-		<meta property="og:description" content={metadata.description} />
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://cidr.xyz" />
-		<meta property="og:site_name" content="CIDR.xyz" />
-		<meta property="og:image" content="https://cidr.xyz/og.webp" />
-		<meta property="og:image:type" content="image/webp" />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		<meta
-			property="og:image:alt"
-			content="Color-coded octets illustrating an IP range and CIDR mask"
-		/>
+	<section
+		id="faq-section"
+		class="mx-auto mt-12 max-w-3xl px-4 sm:px-0"
+	>
+		<h2 id="faq" class="mb-4 text-2xl font-bold">
+			CIDR & Subnetting FAQ
+		</h2>
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={metadata.title} />
-		<meta name="twitter:description" content={metadata.description} />
-		<meta name="twitter:image" content="https://cidr.xyz/og.webp" />
-
-		<script
-			async
-			src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-		></script>
-		<script define:vars={{ GOOGLE_ANALYTICS_ID }} is:inline>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
+		<dl class="space-y-2">
+			{
+				faqs.map(({ q, a }) => (
+					<details class="group rounded-lg bg-white shadow-sm open:shadow-md transition">
+						<summary
+							class="flex cursor-pointer list-none items-center justify-between
+						 rounded-lg px-4 py-3 font-semibold text-gray-900
+						 hover:bg-gray-50"
+						>
+							{q}
+							<svg
+								class="h-5 w-5 transform text-gray-400 transition group-open:rotate-180"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M19 9l-7 7-7-7"
+								/>
+							</svg>
+						</summary>
+						<dd class="px-4 pb-4 pt-1 text-gray-700">
+							{a}
+						</dd>
+					</details>
+				))
 			}
-			gtag("js", new Date());
-			gtag("config", GOOGLE_ANALYTICS_ID);
-		</script>
-	</head>
-	<body>
-		<div
-			class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-2"
-		>
-			<div class="max-w-6xl w-full sm:p-8 p-2 min-h-[800px]">
-				<h1
-					class="my-3 sm:my-1 text-center sm:text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
-				>
-					IP / CIDR Calculator
-				</h1>
-				<h2 class="pt-1 text-xl text-center sm:text-left text-gray-600">
-					Visualize and Calculate Network Ranges with IPv4 CIDR Blocks
-				</h2>
+		</dl>
+	</section>
 
-				<Cidr client:load />
-
-				<section
-					id="faq-section"
-					class="mx-auto mt-12 max-w-3xl px-4 sm:px-0"
-				>
-					<h2 id="faq" class="mb-4 text-2xl font-bold">
-						CIDR & Subnetting FAQ
-					</h2>
-
-					<dl class="space-y-2">
-						{
-							faqs.map(({ q, a }) => (
-								<details class="group rounded-lg bg-white shadow-sm open:shadow-md transition">
-									<summary
-										class="flex cursor-pointer list-none items-center justify-between
-								 rounded-lg px-4 py-3 font-semibold text-gray-900
-								 hover:bg-gray-50"
-									>
-										{q}
-										<svg
-											class="h-5 w-5 transform text-gray-400 transition group-open:rotate-180"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke="currentColor"
-										>
-											<path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												stroke-width="2"
-												d="M19 9l-7 7-7-7"
-											/>
-										</svg>
-									</summary>
-									<dd class="px-4 pb-4 pt-1 text-gray-700">
-										{a}
-									</dd>
-								</details>
-							))
-						}
-					</dl>
-				</section>
-
-				<script
-					type="application/ld+json"
-					is:inline
-					set:html={JSON.stringify(faqJsonLd, null, 2)}
-				/>
-			</div>
-			<footer class="text-xs my-4 pb-3 text-center">
-				<p>
-					Created by <a
-						href="https://yuv.al"
-						class="text-blue-600 hover:underline">Yuval Adam</a
-					>, operated by <a
-						href="https://magicmonad.com"
-						class="text-blue-600 hover:underline">Magic Monad</a
-					>. Open source available on <a
-						href="https://github.com/yuvadm/cidr.xyz"
-						class="text-blue-600 hover:underline">Github</a
-					>.
-				</p>
-			</footer>
-		</div>
-	</body>
-</html>
+	<script
+		type="application/ld+json"
+		is:inline
+		set:html={JSON.stringify(faqJsonLd, null, 2)}
+	/>
+</Layout>
