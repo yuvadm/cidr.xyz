@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const title = "CIDR Calculator Widget Embed Example";
+const description = "Learn how to embed the CIDR calculator widget in your website";
+---
+
+<Layout title={title} description={description}>
+	<h1 class="my-3 sm:my-1 text-center sm:text-left text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl text-4xl">
+		CIDR Calculator Widget
+	</h1>
+	<h2 class="pt-1 text-xl text-center sm:text-left text-gray-600 mb-8">
+		Embed the CIDR Calculator in your website
+	</h2>
+
+	<div class="prose max-w-none mb-8">
+		<p>
+			You can embed the CIDR calculator widget in your website or application using an iframe. 
+			Copy the code below and adjust the width and height as needed:
+		</p>
+
+		<pre class="bg-gray-100 p-4 rounded-md overflow-x-auto"><code>&lt;iframe 
+  src="https://cidr.xyz/embed" 
+  width="100%" 
+  height="600" 
+  frameborder="0" 
+  allowtransparency="true"
+  title="CIDR Calculator"
+  loading="lazy"
+&gt;&lt;/iframe&gt;</code></pre>
+
+		<h3>Live Example</h3>
+		<p>Here's how the embedded widget looks:</p>
+	</div>
+
+	<div class="border border-gray-300 rounded-lg shadow-md mb-8">
+		<iframe 
+			src="/embed" 
+			width="100%" 
+			height="600" 
+			frameborder="0" 
+			allowtransparency="true"
+			title="CIDR Calculator"
+			loading="lazy"
+		></iframe>
+	</div>
+
+	<div class="prose max-w-none">
+		<h3>Customization</h3>
+		<p>
+			The widget adapts to the width of its container. For best results:
+		</p>
+		<ul>
+			<li>Use a minimum width of 400px for optimal display</li>
+			<li>Set a minimum height of 600px to avoid scrolling</li>
+			<li>The widget has a transparent background that can blend with your site</li>
+		</ul>
+
+		<h3>Usage Notes</h3>
+		<ul>
+			<li>The widget is free to use on any website</li>
+			<li>Please consider adding attribution with a link back to <a href="https://cidr.xyz" class="text-blue-600 hover:underline">cidr.xyz</a></li>
+			<li>For any questions or customization needs, visit the <a href="https://github.com/yuvadm/cidr.xyz" class="text-blue-600 hover:underline">GitHub repository</a></li>
+		</ul>
+	</div>
+</Layout>

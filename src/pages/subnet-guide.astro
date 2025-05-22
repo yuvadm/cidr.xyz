@@ -27,17 +27,11 @@ import { Content as GuideContent } from "../content/cidr-guide.md";
 
 <Layout title={title} description={description}>
     <header>
-        <a href="/" class="group flex items-center text-blue-600 transition-all duration-300 hover:text-blue-800">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 transform transition-transform duration-300 group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            <span class="hover:underline">Back Home</span>
-        </a>
         <div class="mx-auto max-w-7xl px-4 py-2 sm:py-4 lg:px-6 text-center">
             <h1
                 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl"
             >
-                CIDR Calculator &amp; Subnet Guide
+                CIDR Subnet Guide
             </h1>
             <p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-gray-700">
                 Convert CIDR blocks to IP ranges and master subnetting for IPv4
@@ -46,7 +40,7 @@ import { Content as GuideContent } from "../content/cidr-guide.md";
         </div>
     </header>
 
-    <section>
+    <section class="hidden sm:block">
         <Cidr client:load />
     </section>
 

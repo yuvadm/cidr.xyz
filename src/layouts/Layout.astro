@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-
+import Navigation from "../components/Navigation";
 import { GOOGLE_ANALYTICS_ID } from "../config";
 
 export interface Props {
@@ -99,11 +99,14 @@ const {
 		</script>
 
 		<slot name="head" />
+
+
 	</head>
 	<body>
 		<div
 			class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-2"
 		>
+			<Navigation client:load />
 			<div class="max-w-6xl w-full sm:p-8 p-2 min-h-[800px]">
 				<slot />
 			</div>
@@ -115,9 +118,6 @@ const {
 					>, operated by <a
 						href="https://magicmonad.com"
 						class="text-blue-600 hover:underline">Magic Monad</a
-					>. Open source available on <a
-						href="https://github.com/yuvadm/cidr.xyz"
-						class="text-blue-600 hover:underline">Github</a
 					>.
 				</p>
 			</footer>

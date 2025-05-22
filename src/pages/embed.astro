@@ -1,0 +1,72 @@
+---
+import Cidr from "../components/Cidr";
+import { GOOGLE_ANALYTICS_ID } from "../config";
+
+const title = "CIDR Calculator Widget";
+const description = "Embeddable CIDR calculator widget for network calculations";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/x-icon" href="/ico/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="noindex, follow" />
+
+		<!-- Import global styles -->
+		<style is:global>
+			@import "../styles/global.css";
+		</style>
+
+		<!-- Embed-specific styles -->
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background: transparent;
+				overflow: hidden;
+			}
+			.embed-container {
+				width: 100%;
+				height: 100%;
+				background-color: rgba(255, 255, 255, 0.9);
+				border-radius: 8px;
+				padding: 10px;
+				box-sizing: border-box;
+			}
+		</style>
+
+		<script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
+		<script define:vars={{ GOOGLE_ANALYTICS_ID }} is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+			gtag("config", GOOGLE_ANALYTICS_ID);
+		</script>
+	</head>
+	<body>
+		<div class="embed-container">
+			<Cidr client:load />
+		</div>
+
+		<script is:inline>
+			// Handle messages from parent window for potential configuration
+			window.addEventListener('message', (event) => {
+				// You can add functionality here to configure the widget based on messages
+				// from the parent window if needed in the future
+			});
+
+			// Notify parent when loaded
+			window.addEventListener('load', () => {
+				if (window.parent !== window) {
+					window.parent.postMessage({ type: 'cidr-widget-loaded' }, '*');
+				}
+			});
+		</script>
+	</body>
+</html>

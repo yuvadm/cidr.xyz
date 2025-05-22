@@ -19,18 +19,18 @@ const faqJsonLd = {
 ---
 
 <Layout title={title} description={description}>
-	<h1
-		class="my-3 sm:my-1 text-center sm:text-left text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl text-4xl"
-	>
-		CIDR Calculator
-	</h1>
-	<h2 class="pt-1 text-xl text-center sm:text-left text-gray-600">
-		Visualize and Calculate Network Ranges with IPv4 CIDR Blocks
-	</h2>
-	<a
-		href="/cidr-calculator-subnet-guide"
-		class="text-blue-600 hover:underline">Read the guide</a
-	>
+	<header>
+		<div class="mx-auto max-w-7xl px-4 py-2 sm:py-4 lg:px-6 text-center">
+			<h1
+				class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl"
+			>
+				CIDR Calculator
+			</h1>
+			<p class="mt-4 text-lg sm:text-xl max-w-2xl mx-auto text-gray-700">
+				Visualize and Calculate Network Ranges with IPv4 CIDR Blocks
+			</p>
+		</div>
+	</header>
 
 	<Cidr client:load />
 
