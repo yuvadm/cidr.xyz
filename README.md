@@ -1,6 +1,6 @@
 # cidr.xyz
 
-**Web-based CIDR / netmask / IP address visualizer - https://cidr.xyz**
+**CIDR Calculator and Subnetting Visualizer - https://cidr.xyz**
 
 [![cidr.png](cidr.png)](https://cidr.xyz)
 
