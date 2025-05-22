@@ -99,28 +99,78 @@ const {
 		</script>
 
 		<slot name="head" />
-
-
 	</head>
-	<body>
+	<body class="flex flex-col min-h-screen">
 		<div
-			class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-2"
+			class="flex-grow flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-2 w-full"
 		>
 			<Navigation client:load />
 			<div class="max-w-6xl w-full sm:p-8 p-2 min-h-[800px]">
 				<slot />
 			</div>
-			<footer class="text-xs m-4 pb-3 text-center">
-				<p>
-					Created by <a
-						href="https://yuv.al"
-						class="text-blue-600 hover:underline">Yuval Adam</a
-					>, operated by <a
-						href="https://magicmonad.com"
-						class="text-blue-600 hover:underline">Magic Monad</a
-					>.
-				</p>
-			</footer>
 		</div>
+
+		<footer class="w-full py-12 pb-20 bg-gray-800 text-gray-200">
+			<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+				<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+					<div class="md:col-span-1">
+						<h3 class="text-lg font-semibold mb-4">CIDR.xyz</h3>
+						<p class="text-sm">
+							A modern CIDR calculator and subnet visualization
+							tool.
+						</p>
+						<p class="pt-4 text-xs">
+							&copy; {new Date().getFullYear()} Magic Monad. All rights
+							reserved.
+						</p>
+					</div>
+					<div>
+						<h3 class="text-lg font-semibold mb-4">Resources</h3>
+						<ul class="space-y-2 text-sm">
+							<li>
+								<a
+									href="/subnet-guide"
+									class="text-gray-400 hover:text-white"
+									>Subnet Guide</a
+								>
+							</li>
+							<li>
+								<a
+									href="/embed-widget"
+									class="text-gray-400 hover:text-white"
+									>Embed Widget</a
+								>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="text-lg font-semibold mb-4">About</h3>
+						<ul class="space-y-2 text-sm">
+							<li>
+								Source code on <a
+									href="https://github.com/yuvadm/cidr.xyz"
+									class="text-gray-400 hover:text-white"
+									>Github</a
+								>
+							</li>
+							<li>
+								Created by <a
+									href="https://yuv.al"
+									class="text-gray-400 hover:text-white"
+									>Yuval Adam</a
+								>
+							</li>
+							<li>
+								Operated by <a
+									href="https://magicmonad.com"
+									class="text-gray-400 hover:text-white"
+									>Magic Monad</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
