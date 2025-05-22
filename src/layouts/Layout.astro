@@ -51,7 +51,7 @@ const {
 			name="robots"
 			content={noindex ? "noindex, follow" : "index, follow"}
 		/>
-		<link rel="canonical" href="https://cidr.xyz" />
+		<link rel="canonical" href={`https://cidr.xyz${Astro.url.pathname}`} />
 
 		{
 			!noindex && (

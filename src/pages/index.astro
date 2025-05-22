@@ -4,7 +4,8 @@ import Cidr from "../components/Cidr";
 import { faqs } from "../content/faqs.ts";
 
 const title = "Interactive visual CIDR and IP range calculator";
-const description = "Instantly compute and visualize CIDR subnets, IP ranges and masks. Free online tool for accurate network design, planning and IT education.";
+const description =
+	"Instantly compute and visualize CIDR subnets, IP ranges and masks. Free online tool for accurate network design, planning and IT education.";
 
 const faqJsonLd = {
 	"@context": "https://schema.org",
@@ -19,23 +20,22 @@ const faqJsonLd = {
 
 <Layout title={title} description={description}>
 	<h1
-		class="my-3 sm:my-1 text-center sm:text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+		class="my-3 sm:my-1 text-center sm:text-left text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl text-4xl"
 	>
-		IP / CIDR Calculator
+		CIDR Calculator
 	</h1>
 	<h2 class="pt-1 text-xl text-center sm:text-left text-gray-600">
 		Visualize and Calculate Network Ranges with IPv4 CIDR Blocks
 	</h2>
+	<a
+		href="/cidr-calculator-subnet-guide"
+		class="text-blue-600 hover:underline">Read the guide</a
+	>
 
 	<Cidr client:load />
 
-	<section
-		id="faq-section"
-		class="mx-auto mt-12 max-w-3xl px-4 sm:px-0"
-	>
-		<h2 id="faq" class="mb-4 text-2xl font-bold">
-			CIDR & Subnetting FAQ
-		</h2>
+	<section id="faq-section" class="mx-auto mt-12 max-w-3xl px-4 sm:px-0">
+		<h2 id="faq" class="mb-4 text-2xl font-bold">CIDR & Subnetting FAQ</h2>
 
 		<dl class="space-y-2">
 			{
@@ -62,9 +62,7 @@ const faqJsonLd = {
 								/>
 							</svg>
 						</summary>
-						<dd class="px-4 pb-4 pt-1 text-gray-700">
-							{a}
-						</dd>
+						<dd class="px-4 pb-4 pt-1 text-gray-700">{a}</dd>
 					</details>
 				))
 			}
