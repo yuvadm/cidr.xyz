@@ -4,6 +4,9 @@ import Layout from "../layouts/Layout.astro";
 const title = "CIDR Calculator Widget Embed Example";
 const description =
 	"Learn how to embed the CIDR calculator widget in your website";
+
+// Embed code that users can copy
+const embedCode = `<iframe src="https://cidr.xyz/embed" width="100%" height="600" title="CIDR Calculator" loading="lazy"></iframe>`;
 ---
 
 <Layout title={title} description={description}>
@@ -28,14 +31,7 @@ const description =
 		</p>
 
 		<pre
-			class="p-4 rounded-md overflow-x-auto"><code>&lt;iframe 
-  src="https://cidr.xyz/embed" 
-  width="100%" height="600" 
-  frameborder="0" 
-  allowtransparency="true"
-  title="CIDR Calculator"
-  loading="lazy"
-&gt;&lt;/iframe&gt;</code></pre>
+			class="p-4 rounded-md overflow-x-auto bg-gray-800 flex justify-center"><code class="text-gray-300 whitespace-pre-wrap">{embedCode}</code></pre>
 
 		<h3>Live Example</h3>
 	</div>
@@ -45,7 +41,6 @@ const description =
 			src="/embed"
 			width="100%"
 			height="600"
-			allowtransparency="true"
 			title="CIDR Calculator"
 			loading="lazy"></iframe>
 	</div>
