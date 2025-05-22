@@ -1,26 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Cidr from "../components/Cidr";
-import { faqs } from "../content/faqs.ts";
 import Prose from "../components/Prose.astro";
 
-// ────────────────────────────────────────────────────────────
-// Metadata
-// ────────────────────────────────────────────────────────────
-const title = "CIDR Calculator & Subnet Guide — IP Ranges, Masks & IPv6";
+const title = "Subnet Guide — IP Ranges and Masks";
 const description =
-    "Free interactive CIDR calculator and comprehensive plain‑language guide covering subnetting, IP ranges, subnet masks and IPv6 addressing.";
-
-// FAQ structured‑data (kept in sync with UI)
-const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map(({ q, a }) => ({
-        "@type": "Question",
-        name: q,
-        acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-};
+    "Free interactive CIDR calculator and comprehensive guide covering subnetting, IP ranges, subnet masks and addressing.";
 
 import { Content as GuideContent } from "../content/cidr-guide.md";
 ---
@@ -47,11 +32,4 @@ import { Content as GuideContent } from "../content/cidr-guide.md";
     <Prose>
         <GuideContent />
     </Prose>
-
-    {/** Structured‑data block */}
-    <script
-        type="application/ld+json"
-        is:inline
-        set:html={JSON.stringify(faqJsonLd, null, 2)}
-    />
 </Layout>
