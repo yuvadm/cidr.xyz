@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Prose from "../components/Prose.astro";
+
+const title = "Privacy Policy | CIDR.xyz";
+const description = "Privacy policy for CIDR.xyz";
+
+import { Content as PrivacyPolicyContent } from "../content/privacy-policy.md";
+---
+
+<Layout title={title} description={description}>
+	<Prose>
+		<PrivacyPolicyContent />
+	</Prose>
+</Layout>

@@ -63,7 +63,7 @@ export default function Navigation() {
 
 // Separated NavLinks component for reuse
 function NavLinks({ mobile = false }: { mobile?: boolean }) {
-  const linkClass = `text-gray-700 hover:text-blue-600 font-medium ${mobile ? 'py-2' : ''}`;
+  const linkClass = `text-gray-700 hover:text-blue-600 ${mobile ? 'py-2' : ''}`;
 
   return (
     <>
