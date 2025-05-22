@@ -61,7 +61,10 @@ const {
 						<meta property="og:description" content={description} />
 					)}
 					<meta property="og:type" content="website" />
-					<meta property="og:url" content="https://cidr.xyz" />
+					<meta
+						property="og:url"
+						content={`https://cidr.xyz${Astro.url.pathname}`}
+					/>
 					<meta property="og:site_name" content="CIDR.xyz" />
 					<meta property="og:image" content={ogImage} />
 					<meta property="og:image:type" content="image/webp" />
