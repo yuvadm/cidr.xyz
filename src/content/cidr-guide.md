@@ -1,9 +1,3 @@
-# CIDR Calculator & Subnet Guide
-
-Convert CIDR blocks to IP ranges and master subnetting for IPv4 & IPv6—all in one place.
-
----
-
 ## What is CIDR?
 
 **Classless Inter-Domain Routing (CIDR)** is the system that replaced the old class-A/B/C scheme in 1993.
@@ -43,10 +37,10 @@ Subnetting seems daunting until you break it into four predictable moves:
 3. **List subnet starts** 0, 64, 128, 192
 4. **Pick your block** Usable hosts = block size − 2 (62 in a /26)
 
-> **Example**
-> Split `172.16.0.0/16` into at least 10 equal subnets.
-> *Need ≥10 blocks → 4 extra bits (2⁴ = 16)*
-> New prefix = **/20**. Each /20 holds 4094 hosts.
+> **Example**  
+> Split `172.16.0.0/16` into at least 10 equal subnets.  
+> *Need ≥10 blocks → 4 extra bits (2⁴ = 16)*  
+> New prefix = **/20**. Each /20 holds 4094 hosts.  
 > Ranges begin 172.16.0.0, 172.16.16.0, 172.16.32.0 … to 172.16.240.0.
 
 ---
@@ -71,4 +65,3 @@ Toggle **IPv6** in the calculator and try `2001:db8::/48` to explore the range g
 * RFC 4632 — *Classless Inter-Domain Routing for IPv6*
 * RFC 1519 — *CIDR Address Allocation for IPv4*
 * [cidr.xyz source code](https://github.com/yuvadm/cidr.xyz)
-* *Subnetting Examples* blog series (coming soon)

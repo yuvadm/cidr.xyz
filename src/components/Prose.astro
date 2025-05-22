@@ -14,15 +14,18 @@
     prose-ul:my-6 prose-ul:list-disc prose-ul:pl-6
     prose-ol:my-6 prose-ol:list-decimal prose-ol:pl-6
     prose-li:my-2 prose-li:text-gray-900
-    prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:py-1 prose-blockquote:my-6 prose-blockquote:bg-blue-50 prose-blockquote:rounded-r-md
-    prose-blockquote:text-gray-900 prose-blockquote:italic
+    prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:py-3 prose-blockquote:my-6 prose-blockquote:bg-blue-50 prose-blockquote:rounded-md
+    prose-blockquote:text-gray-900 prose-blockquote:font-normal prose-blockquote:before:content-none prose-blockquote:after:content-none
     prose-img:rounded-lg prose-img:shadow-md prose-img:my-8
     prose-hr:hidden
     prose-code:font-mono prose-code:text-blue-700 prose-code:bg-blue-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:border prose-code:border-blue-100
-    prose-pre:bg-gray-50 prose-pre:border prose-pre:border-gray-200 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-6
-    prose-pre:shadow-sm prose-pre:text-sm
-    [&_pre_code]:text-gray-800 [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:border-0
-    dark:prose-invert dark:prose-pre:bg-gray-800 dark:prose-pre:border-gray-700 dark:prose-code:bg-gray-700 dark:prose-code:border-gray-600 dark:prose-code:text-blue-300 dark:prose-blockquote:bg-gray-800 dark:[&_pre_code]:text-gray-900"
+    prose-pre:bg-gray-800 prose-pre:border prose-pre:border-gray-700 prose-pre:p-4 prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:my-6
+    prose-pre:shadow-sm prose-pre:text-sm prose-pre:text-gray-300
+    [&_pre_code]:text-gray-300 [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:border-0
+    dark:prose-invert
+    dark:prose-pre:bg-gray-800 dark:prose-pre:border-gray-700
+    dark:prose-code:bg-gray-700 dark:prose-code:border-gray-600 dark:prose-code:text-blue-300
+    dark:prose-blockquote:bg-gray-800 dark:prose-blockquote:text-gray-300 dark:prose-blockquote:border-blue-700"
 >
     <slot />
 </div>
