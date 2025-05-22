@@ -73,7 +73,7 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
       <a href="/subnet-guide" className={linkClass}>
         Subnet Guide
       </a>
-      <a href="/embed-example" className={linkClass}>
+      <a href="/embed-widget" className={linkClass}>
         Embed
       </a>
       <a

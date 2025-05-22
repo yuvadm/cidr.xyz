@@ -3,10 +3,11 @@ import Cidr from "../components/Cidr";
 import { GOOGLE_ANALYTICS_ID } from "../config";
 
 const title = "CIDR Calculator Widget";
-const description = "Embeddable CIDR calculator widget for network calculations";
+const description =
+	"Embeddable CIDR calculator widget for network calculations";
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
@@ -29,17 +30,12 @@ const description = "Embeddable CIDR calculator widget for network calculations"
 				background: transparent;
 				overflow: hidden;
 			}
-			.embed-container {
-				width: 100%;
-				height: 100%;
-				background-color: rgba(255, 255, 255, 0.9);
-				border-radius: 8px;
-				padding: 10px;
-				box-sizing: border-box;
-			}
 		</style>
 
-		<script async src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}></script>
+		<script
+			async
+			src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+		></script>
 		<script define:vars={{ GOOGLE_ANALYTICS_ID }} is:inline>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
@@ -50,21 +46,24 @@ const description = "Embeddable CIDR calculator widget for network calculations"
 		</script>
 	</head>
 	<body>
-		<div class="embed-container">
-			<Cidr client:load />
+		<div class="w-full h-full p-2 box-border">
+			<Cidr client:load embed={true} />
 		</div>
 
 		<script is:inline>
 			// Handle messages from parent window for potential configuration
-			window.addEventListener('message', (event) => {
+			window.addEventListener("message", (event) => {
 				// You can add functionality here to configure the widget based on messages
 				// from the parent window if needed in the future
 			});
 
 			// Notify parent when loaded
-			window.addEventListener('load', () => {
+			window.addEventListener("load", () => {
 				if (window.parent !== window) {
-					window.parent.postMessage({ type: 'cidr-widget-loaded' }, '*');
+					window.parent.postMessage(
+						{ type: "cidr-widget-loaded" },
+						"*",
+					);
 				}
 			});
 		</script>

@@ -1,7 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Netmask } from 'netmask';
 
-export default function Cidr() {
+interface CidrProps {
+    embed?: boolean;
+}
+
+export default function Cidr({ embed = false }: CidrProps) {
     const [ip, setIp] = useState([10, 88, 135, 144]);
     const [cidr, setCidr] = useState(28);
     const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400", "bg-slate-300"]);
@@ -221,7 +225,7 @@ export default function Cidr() {
 
 
     return (
-        <div className="pt-1 my-6 border-0 sm:border border-gray-300 rounded-lg bg-white/70 shadow-md">
+        <div className={`pt-1 ${embed ? 'my-2' : 'my-6'} border-0 sm:border border-gray-300 rounded-lg bg-white/70 shadow-md`}>
             <div className="flex flex-wrap justify-center gap-4 my-10">
                 {ip.map((octet, i) => (
                     <div key={`octet-${i}`}>
@@ -272,6 +276,14 @@ export default function Cidr() {
                     </div>)
                 }
             </div>
+
+            {embed && (<h2 className="text-lg text-gray-700 text-center mt-4 font-bold">
+                CIDR Calculator by <a
+                    href="https://cidr.xyz"
+                    target="_blank"
+                    className="text-blue-600 hover:underline">cidr.xyz</a
+                >
+            </h2>)}
 
             <div className="flex justify-center lg:justify-end p-5">
                 <div className="mx-2">
