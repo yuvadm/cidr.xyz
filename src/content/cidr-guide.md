@@ -1,9 +1,3 @@
----
-title: "Subnet Guide — IP Ranges and Masks"
-description:
-    "Free interactive CIDR calculator and comprehensive guide covering subnetting, IP ranges, subnet masks and addressing."
----
-
 ## What is CIDR?
 
 **Classless Inter-Domain Routing (CIDR)** is the system that replaced the old class-A/B/C scheme in 1993.
