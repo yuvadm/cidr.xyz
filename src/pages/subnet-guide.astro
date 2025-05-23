@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Cidr from "../components/Cidr";
-import Prose from "../components/Prose.astro";
 
 const title = "Subnet Guide — IP Ranges and Masks";
 const description =
@@ -29,7 +28,7 @@ import { Content as GuideContent } from "../content/cidr-guide.md";
         <Cidr client:load />
     </section>
 
-    <Prose>
+    <article class="prose prose-lg mx-auto">
         <GuideContent />
-    </Prose>
+    </article>
 </Layout>

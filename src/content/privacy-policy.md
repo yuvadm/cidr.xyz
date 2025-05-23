@@ -30,6 +30,4 @@ Since we collect no personal information, we have no personal data to access, mo
 
 Questions about this policy? Contact us at: [hello@magicmonad.com](mailto:hello@magicmonad.com).
 
----
-
 *This policy applies to cidr.xyz and is effective as of 2025-05-22.*
