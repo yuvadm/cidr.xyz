@@ -70,10 +70,10 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
       <a href="/" className={linkClass}>
         CIDR Calculator
       </a>
-      <a href="/subnet-guide" className={linkClass}>
+      <a href="/subnet-guide/" className={linkClass}>
         Subnet Guide
       </a>
-      <a href="/embed-widget" className={linkClass}>
+      <a href="/embed-widget/" className={linkClass}>
         Embed
       </a>
       <a
