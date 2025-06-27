@@ -31,6 +31,13 @@ export default function Cidr({ embed = false }: CidrProps) {
         setIp(newIp);
     }
 
+    const toggleBit = (octetIndex: number, bitIndex: number) => {
+        const newIp = [...ip];
+        // Toggle the bit at the specified position
+        newIp[octetIndex] ^= (1 << (7 - bitIndex));
+        setIp(newIp);
+    }
+
     // This function will now be called by our manual event listener
     // Note: The event type is now native WheelEvent, not React.WheelEvent
     const processWheelEvent = (event: WheelEvent, i: number, max: number) => {
@@ -264,7 +271,12 @@ export default function Cidr({ embed = false }: CidrProps) {
 
             <div className="flex flex-wrap justify-center gap-4 mt-10">
                 {bits.map((octet, i) => <span key={`octet-${i}`} className="px-1">
-                    {octet.map((bit, j) => <span key={`octet-${i}-bit-${j}`} className={`font-mono border-y ${j === 0 && "border-l"} border-r border-gray-700 px-2 py-1 ${i * 8 + j < cidr ? cols[i] : cols[4]}`}>{bit}</span>)}
+                    {octet.map((bit, j) => <button key={`octet-${i}-bit-${j}`} 
+                        className={`font-mono border-y ${j === 0 && "border-l"} border-r border-gray-700 px-2 py-1 cursor-pointer hover:bg-gray-200 active:bg-gray-300 transition-colors ${i * 8 + j < cidr ? cols[i] : cols[4]}`}
+                        onClick={() => toggleBit(i, j)}
+                        title={`Toggle bit ${i * 8 + j + 1} (click to flip)`}
+                        aria-label={`Bit ${i * 8 + j + 1}, current value ${bit}, click to toggle`}
+                    >{bit}</button>)}
                 </span>)}
             </div>
 
