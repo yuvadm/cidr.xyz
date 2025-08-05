@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://cidr.xyz/sitemap-index.xml
