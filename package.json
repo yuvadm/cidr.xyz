@@ -2,6 +2,7 @@
   "name": "cidr.xyz",
   "type": "module",
   "version": "3.0.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "astro dev",
