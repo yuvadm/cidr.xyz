@@ -1,4 +1,5 @@
 {
+    "$schema": "./node_modules/wrangler/config-schema.json",
     "name": "cidr",
     "compatibility_date": "2025-11-10",
     "assets": {
@@ -13,5 +14,7 @@
             "pattern": "www.cidr.xyz",
             "custom_domain": true
         }
-    ]
+    ],
+    "preview_urls": true,
+    "workers_dev": true
 }
