@@ -54,8 +54,6 @@ The slash notation is identical in IPv6—just with 128-bit addresses.
   * `/56`  — 256 /64s
   * `/60`  — 16 /64s
 
-Toggle **IPv6** in the calculator and try `2001:db8::/48` to explore the range graphically.
-
 ## Further Reading & Tools
 
 * RFC 4632 — *Classless Inter-Domain Routing for IPv6*
