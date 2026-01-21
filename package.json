@@ -23,6 +23,6 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.5",
-    "wrangler": "^4.46.0"
+    "wrangler": "^4.59.1"
   }
 }
