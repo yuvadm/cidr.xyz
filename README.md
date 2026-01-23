@@ -15,7 +15,7 @@ $ npm run dev
 
 ## Deployment
 
-Deployment is automated from `master` branch via Cloudflare Pages.
+Deployment is automated from `master` branch via Cloudflare Workers.
 
 ## License
 
