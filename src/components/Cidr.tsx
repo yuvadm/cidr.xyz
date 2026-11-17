@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Netmask } from 'netmask';
+import Cidr6 from './Cidr6';
 
 interface CidrProps {
     embed?: boolean;
 }
 
-export default function Cidr({ embed = false }: CidrProps) {
+function Cidr4({ embed = false }: CidrProps) {
     const [ip, setIp] = useState([10, 88, 135, 144]);
     const [cidr, setCidr] = useState(28);
     const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400", "bg-slate-300"]);
@@ -315,6 +316,38 @@ export default function Cidr({ embed = false }: CidrProps) {
                     </button>
                 </div>
             </div>
+        </div>
+    );
+}
+
+type Mode = 'v4' | 'v6';
+
+export default function Cidr({ embed = false }: CidrProps) {
+    const [mode, setMode] = useState<Mode>('v4');
+
+    // A shared IPv6 link contains ':' in its fragment; open the IPv6 tab for it.
+    useEffect(() => {
+        if (window.location.hash.includes(':')) setMode('v6');
+    }, []);
+
+    const tab = (m: Mode, label: string) => (
+        <button
+            role="tab"
+            aria-selected={mode === m}
+            onClick={() => setMode(m)}
+            className={`px-6 py-2 text-lg font-semibold rounded-md transition-colors cursor-pointer ${mode === m ? 'bg-blue-600 text-white shadow' : 'text-gray-700 hover:bg-gray-200'}`}
+        >{label}</button>
+    );
+
+    return (
+        <div>
+            <div role="tablist" aria-label="IP version" className={`flex justify-center ${embed ? 'mt-2' : 'mt-6'}`}>
+                <div className="inline-flex gap-1 p-1 rounded-lg bg-white/70 border border-gray-300">
+                    {tab('v4', 'IPv4')}
+                    {tab('v6', 'IPv6')}
+                </div>
+            </div>
+            {mode === 'v4' ? <Cidr4 embed={embed} /> : <Cidr6 embed={embed} />}
         </div>
     );
 }
