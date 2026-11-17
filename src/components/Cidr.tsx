@@ -134,11 +134,42 @@ function Cidr4({ embed = false }: CidrProps) {
         setCidr(cidrVal);
     }
 
-    const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    // Paste into octet box i (0-3) or the CIDR box (i = 4).
+    // Full address (optionally /n) replaces everything; otherwise the pasted
+    // octets fill box i and the following boxes.
+    const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>, i: number) => {
         event.preventDefault();
-        if (event.clipboardData === null) return;
-        const text = event.clipboardData.getData('Text');
-        updateCidrString(text);
+        const text = (event.clipboardData?.getData('Text') ?? '').trim();
+        if (!text) return;
+
+        const [addr, pfx, ...extra] = text.split('/');
+        if (extra.length) return;
+
+        let newCidr: number | null = null;
+        if (pfx !== undefined) {
+            if (!/^\d{1,2}$/.test(pfx) || Number(pfx) > 32) return;
+            newCidr = Number(pfx);
+        }
+
+        // Just a prefix length: "28" or "/28" (CIDR box)
+        if (i === 4 || addr === '') {
+            const m = text.match(/^\/?(\d{1,2})$/);
+            if (m && Number(m[1]) <= 32) setCidr(Number(m[1]));
+            else if (addr !== '' && /^\d{1,3}(\.\d{1,3}){3}$/.test(addr)) {
+                const parts = addr.split('.').map(Number);
+                if (parts.every(o => o <= 255)) { setIp(parts); if (newCidr !== null) setCidr(newCidr); }
+            }
+            return;
+        }
+
+        const segs = addr.split('.');
+        if (segs[segs.length - 1] === '' && segs.length > 1) segs.pop(); // "10.88."
+        if (!segs.every(x => /^\d{1,3}$/.test(x) && Number(x) <= 255)) return;
+        const nums = segs.map(Number);
+
+        if (nums.length === 4) setIp(nums); // full address replaces all boxes
+        else setIp(cur => cur.map((o, k) => (k >= i && k - i < nums.length ? nums[k - i] : o)));
+        if (newCidr !== null) setCidr(newCidr);
     }
 
     const handleCopy = async () => {
@@ -246,7 +277,7 @@ function Cidr4({ embed = false }: CidrProps) {
                             onChange={(e) => setIpOctet(i, parseOctet(e.target.value, 255))}
                             // onWheel prop is removed, handled by useEffect
                             onKeyDown={(e) => handleKeyDown(e, i, 255)}
-                            onPaste={handlePaste}
+                            onPaste={(e) => handlePaste(e, i)}
                             className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
                             maxLength={3}
                             aria-label={`Octet ${i + 1}`}
@@ -263,7 +294,7 @@ function Cidr4({ embed = false }: CidrProps) {
                     onChange={(e) => setCidr(parseOctet(e.target.value, 32))}
                     // onWheel prop is removed
                     onKeyDown={(e) => handleKeyDown(e, 4, 32)} // Use 4 as index for CIDR
-                    onPaste={handlePaste}
+                    onPaste={(e) => handlePaste(e, 4)}
                     className={`w-20 h-20 text-3xl text-center rounded-md ${cols[4]}`}
                     maxLength={2}
                     aria-label={`Network bits`}

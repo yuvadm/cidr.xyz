@@ -161,9 +161,49 @@ export default function Cidr6({ embed = false }: Cidr6Props) {
         if (parsed.prefix !== null) setPrefix(parsed.prefix);
     };
 
-    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    // Paste into a hex box (index i): a full address replaces everything,
+    // otherwise the pasted segments fill box i and the following boxes.
+    const handleGroupPaste = (e: React.ClipboardEvent<HTMLInputElement>, i: number) => {
         e.preventDefault();
-        applyString(e.clipboardData?.getData("Text") ?? "");
+        const text = (e.clipboardData?.getData("Text") ?? "").trim();
+        if (!text) return;
+
+        // Full address (8 groups, "::" form, or 32 hex digits), optionally with /prefix
+        const compact = text.match(/^([0-9a-fA-F]{32})(?:\/(\d{1,3}))?$/);
+        const full = compact
+            ? parseCidr6(compact[1].replace(/(.{4})(?=.)/g, "$1:") + (compact[2] ? "/" + compact[2] : ""))
+            : parseCidr6(text);
+        if (full) {
+            setGroups(full.groups);
+            if (full.prefix !== null) setPrefix(full.prefix);
+            return;
+        }
+
+        // Partial: "2001", "2001:db8", "2001:db8:1234:" ...
+        const [addr, pfx, ...extra] = text.replace(/^\[|\]$/g, "").split("/");
+        if (extra.length) return;
+        const segs = addr.split(":");
+        if (segs[0] === "" && segs.length > 1) segs.shift();
+        if (segs[segs.length - 1] === "" && segs.length > 1) segs.pop();
+        if (!segs.every(x => /^[0-9a-fA-F]{1,4}$/.test(x))) return;
+        let newPrefix: number | null = null;
+        if (pfx !== undefined) {
+            if (!/^\d{1,3}$/.test(pfx) || Number(pfx) > 128) return;
+            newPrefix = Number(pfx);
+        }
+        setGroups(gs => gs.map((x, k) => (k >= i && k - i < segs.length ? parseInt(segs[k - i], 16) : x)));
+        if (newPrefix !== null) setPrefix(newPrefix);
+    };
+
+    const handlePrefixPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const text = (e.clipboardData?.getData("Text") ?? "").trim();
+        const m = text.match(/^\/?(\d{1,3})$/);
+        if (m) {
+            if (Number(m[1]) <= 128) setPrefix(Number(m[1]));
+            return;
+        }
+        applyString(text);
     };
 
     const handleGroupKey = (e: React.KeyboardEvent<HTMLInputElement>, i: number) => {
@@ -311,7 +351,7 @@ export default function Cidr6({ embed = false }: Cidr6Props) {
                                     }}
                                     onFocus={e => e.target.select()}
                                     onKeyDown={e => handleGroupKey(e, i)}
-                                    onPaste={handlePaste}
+                                    onPaste={e => handleGroupPaste(e, i)}
                                     style={style}
                                     className="w-16 h-16 sm:w-[5.5rem] sm:h-[5.5rem] text-2xl sm:text-3xl font-mono text-center rounded-md"
                                     maxLength={4}
@@ -367,7 +407,7 @@ export default function Cidr6({ embed = false }: Cidr6Props) {
                         }}
                         onFocus={e => e.target.select()}
                         onKeyDown={handlePrefixKey}
-                        onPaste={handlePaste}
+                        onPaste={handlePrefixPaste}
                         className="w-20 h-20 sm:w-24 sm:h-24 text-3xl sm:text-4xl text-center rounded-md bg-slate-300"
                         maxLength={3}
                         aria-label="Prefix length"
