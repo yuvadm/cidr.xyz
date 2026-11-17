@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Netmask } from 'netmask';
+import Cidr6 from './Cidr6';
 
 interface CidrProps {
     embed?: boolean;
 }
 
-export default function Cidr({ embed = false }: CidrProps) {
+function Cidr4({ embed = false }: CidrProps) {
     const [ip, setIp] = useState([10, 88, 135, 144]);
     const [cidr, setCidr] = useState(28);
     const [cols] = useState(["bg-purple-400", "bg-red-400", "bg-green-400", "bg-yellow-400", "bg-slate-300"]);
@@ -133,11 +134,42 @@ export default function Cidr({ embed = false }: CidrProps) {
         setCidr(cidrVal);
     }
 
-    const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>) => {
+    // Paste into octet box i (0-3) or the CIDR box (i = 4).
+    // Full address (optionally /n) replaces everything; otherwise the pasted
+    // octets fill box i and the following boxes.
+    const handlePaste = (event: React.ClipboardEvent<HTMLInputElement>, i: number) => {
         event.preventDefault();
-        if (event.clipboardData === null) return;
-        const text = event.clipboardData.getData('Text');
-        updateCidrString(text);
+        const text = (event.clipboardData?.getData('Text') ?? '').trim();
+        if (!text) return;
+
+        const [addr, pfx, ...extra] = text.split('/');
+        if (extra.length) return;
+
+        let newCidr: number | null = null;
+        if (pfx !== undefined) {
+            if (!/^\d{1,2}$/.test(pfx) || Number(pfx) > 32) return;
+            newCidr = Number(pfx);
+        }
+
+        // Just a prefix length: "28" or "/28" (CIDR box)
+        if (i === 4 || addr === '') {
+            const m = text.match(/^\/?(\d{1,2})$/);
+            if (m && Number(m[1]) <= 32) setCidr(Number(m[1]));
+            else if (addr !== '' && /^\d{1,3}(\.\d{1,3}){3}$/.test(addr)) {
+                const parts = addr.split('.').map(Number);
+                if (parts.every(o => o <= 255)) { setIp(parts); if (newCidr !== null) setCidr(newCidr); }
+            }
+            return;
+        }
+
+        const segs = addr.split('.');
+        if (segs[segs.length - 1] === '' && segs.length > 1) segs.pop(); // "10.88."
+        if (!segs.every(x => /^\d{1,3}$/.test(x) && Number(x) <= 255)) return;
+        const nums = segs.map(Number);
+
+        if (nums.length === 4) setIp(nums); // full address replaces all boxes
+        else setIp(cur => cur.map((o, k) => (k >= i && k - i < nums.length ? nums[k - i] : o)));
+        if (newCidr !== null) setCidr(newCidr);
     }
 
     const handleCopy = async () => {
@@ -245,7 +277,7 @@ export default function Cidr({ embed = false }: CidrProps) {
                             onChange={(e) => setIpOctet(i, parseOctet(e.target.value, 255))}
                             // onWheel prop is removed, handled by useEffect
                             onKeyDown={(e) => handleKeyDown(e, i, 255)}
-                            onPaste={handlePaste}
+                            onPaste={(e) => handlePaste(e, i)}
                             className={`w-20 h-20 text-3xl text-center rounded-md ${cols[i]}`}
                             maxLength={3}
                             aria-label={`Octet ${i + 1}`}
@@ -262,7 +294,7 @@ export default function Cidr({ embed = false }: CidrProps) {
                     onChange={(e) => setCidr(parseOctet(e.target.value, 32))}
                     // onWheel prop is removed
                     onKeyDown={(e) => handleKeyDown(e, 4, 32)} // Use 4 as index for CIDR
-                    onPaste={handlePaste}
+                    onPaste={(e) => handlePaste(e, 4)}
                     className={`w-20 h-20 text-3xl text-center rounded-md ${cols[4]}`}
                     maxLength={2}
                     aria-label={`Network bits`}
@@ -315,6 +347,38 @@ export default function Cidr({ embed = false }: CidrProps) {
                     </button>
                 </div>
             </div>
+        </div>
+    );
+}
+
+type Mode = 'v4' | 'v6';
+
+export default function Cidr({ embed = false }: CidrProps) {
+    const [mode, setMode] = useState<Mode>('v4');
+
+    // A shared IPv6 link contains ':' in its fragment; open the IPv6 tab for it.
+    useEffect(() => {
+        if (window.location.hash.includes(':')) setMode('v6');
+    }, []);
+
+    const tab = (m: Mode, label: string) => (
+        <button
+            role="tab"
+            aria-selected={mode === m}
+            onClick={() => setMode(m)}
+            className={`px-6 py-2 text-lg font-semibold rounded-md transition-colors cursor-pointer ${mode === m ? 'bg-blue-600 text-white shadow' : 'text-gray-700 hover:bg-gray-200'}`}
+        >{label}</button>
+    );
+
+    return (
+        <div>
+            <div role="tablist" aria-label="IP version" className={`flex justify-center ${embed ? 'mt-2' : 'mt-6'}`}>
+                <div className="inline-flex gap-1 p-1 rounded-lg bg-white/70 border border-gray-300">
+                    {tab('v4', 'IPv4')}
+                    {tab('v6', 'IPv6')}
+                </div>
+            </div>
+            {mode === 'v4' ? <Cidr4 embed={embed} /> : <Cidr6 embed={embed} />}
         </div>
     );
 }
